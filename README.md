@@ -2,7 +2,7 @@
 
 Proyecto Final en la cursada de Henry
 
-# Integrantes
+## Integrantes
 
 <ul>
 	<li>Garry Grejtman</li>
