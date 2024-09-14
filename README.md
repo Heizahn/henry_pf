@@ -1,6 +1,7 @@
-# henry_pf
+# Henry_PF
 
-Proyecto Final en la cursada de Henry
+<h2>Proyecto Final en la cursada de Henry</h2>
+<h4>Plataforma de libros online, con acceso a una cantidad de libros variadas</h4>
 
 ## Integrantes
 
