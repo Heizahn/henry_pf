@@ -1,7 +1,11 @@
+import Screen from '@/components/screen/screen';
+
 export default function Page() {
 	return (
-		<div>
-			<h1>Favorites</h1>
-		</div>
+		<Screen>
+			<div>
+				<h1>Favorites</h1>
+			</div>
+		</Screen>
 	);
 }

@@ -1,3 +1,4 @@
+
 import SearchBooks from "@/components/SearchBar";
 
 export default function Page() {
