@@ -7,26 +7,24 @@ import { useScroll } from 'framer-motion';
 import Lenis from 'lenis';
 
 export default function Sections() {
-	const containerRef = useRef();
+	const containerRef = useRef<HTMLDivElement>(null);
 	const { scrollYProgress } = useScroll({
-		target: containerRef.current,
+		target: containerRef,
 		offset: ['start start', 'end end'],
 	});
 
 	useEffect(() => {
 		const lenis = new Lenis();
-
-		function raf(time) {
+		function raf(time: number) {
 			lenis.raf(time);
 			requestAnimationFrame(raf);
 		}
-
 		requestAnimationFrame(raf);
 	}, []);
 	return (
-		<main ref={containerRef} className='relative h-[180vh]'>
+		<div ref={containerRef} className='relative h-[180vh]'>
 			<SectionOne scrollYProgress={scrollYProgress} />
 			<SectionTwo scrollYProgress={scrollYProgress} />
-		</main>
+		</div>
 	);
 }
