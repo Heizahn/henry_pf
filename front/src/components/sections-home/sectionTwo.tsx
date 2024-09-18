@@ -17,7 +17,7 @@ export default function SectionTwo({
 			style={{ scale, rotate }}
 			className='h-[90vh] sticky text-[3.5vw] flex flex-col items-center justify-center '
 		>
-			<div className='w-10/12 shadow-xl shadow-gray-400 rounded-2xl grid grid-cols-6 place-content-center px-12 bg-white '>
+			<div className='h-[85vh] w-11/12 shadow-xl shadow-gray-400 rounded-2xl grid grid-cols-6 place-content-center px-12 bg-white '>
 				<div className='col-span-4 flex flex-col justify-center items-start'>
 					<h2 className=' text-4xl font-bold text-start'>
 						Lee cuando y donde quieras.
