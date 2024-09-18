@@ -2,7 +2,8 @@
 
 import { useTransform, motion, MotionValue } from 'framer-motion';
 import PalyStoreIcon from '/public/assets/playStore.svg';
-import ImagenRef from '/public/assets/Frame62.svg';
+import ImagenRef from '/public/assets/Frame62.png';
+import Image from 'next/image';
 
 export default function SectionTwo({
 	scrollYProgress,
@@ -46,7 +47,7 @@ export default function SectionTwo({
 				<div className='w-full h-[564px] relative'>
 					<div className='w-96 h-96 absolute bottom-20 right-0 bg-yellow-300 rounded-full'></div>
 					<div className='absolute -right-44 top-24'>
-						<ImagenRef />
+						<Image src={ImagenRef} alt='' />
 					</div>
 				</div>
 			</div>
