@@ -8,9 +8,10 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
-			//Shadow inner black
+			//Shadow Personalized
 			boxShadow: {
 				'inner-black': 'inset 0px 3px 4px rgba(0, 0, 0, 0.6)',
+				form: '5px 5px 5px rgba(0, 0, 0, 0.55)',
 			},
 			colors: {
 				// Colores base (ya configurados)
@@ -27,7 +28,7 @@ const config: Config = {
 					700: '#1556A3',
 				},
 				black: {
-					DEFAULT: '#1E90FF',
+					DEFAULT: '#151515',
 					300: '#808080',
 					500: '#606060',
 					700: '#404040',

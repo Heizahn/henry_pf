@@ -9,14 +9,26 @@ import AnimationForm from '../animation/animationForm';
 type Forms = {
 	component: React.ReactNode;
 };
-export default function Options({ options, isOpen }: { options: string[]; isOpen: boolean }) {
+export default function Options({
+	options,
+	isOpen,
+	setIsOpen,
+}: {
+	options: string[];
+	isOpen: boolean;
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
 	const [showModal, setShowModal] = useState(false);
 	const [keyForm, setKeyForm] = useState(0);
 
 	const forms: Forms[] = [
 		{
 			component: (
-				<AnimationForm title='Login' showModal={showModal} setShowModal={setShowModal}>
+				<AnimationForm
+					title='Iniciar sesión'
+					showModal={showModal}
+					setShowModal={setShowModal}
+				>
 					<Login />
 				</AnimationForm>
 			),
@@ -24,7 +36,7 @@ export default function Options({ options, isOpen }: { options: string[]; isOpen
 		{
 			component: (
 				<AnimationForm
-					title='Registro'
+					title='Crear cuenta'
 					showModal={showModal}
 					setShowModal={setShowModal}
 				>
@@ -65,6 +77,7 @@ export default function Options({ options, isOpen }: { options: string[]; isOpen
 							onClick={() => {
 								setKeyForm(key);
 								setShowModal(true);
+								setIsOpen(false);
 							}}
 						>
 							{item}
