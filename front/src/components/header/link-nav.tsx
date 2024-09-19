@@ -2,11 +2,14 @@
 import { ILinkNav } from '@/interfaces/interfaces';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import Options from './options';
 
 export default function LinkNav({ link }: { link: ILinkNav }) {
-	const { name, Icon, title } = link;
+	const { name, Icon, title, options } = link;
 
 	const pathname = usePathname();
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<div className=' text-gray-700 hover:text-gray-950 cursor-pointer transition-colors duration-500 py-1 px-0.5 text-lg font-semibold '>
@@ -36,10 +39,20 @@ export default function LinkNav({ link }: { link: ILinkNav }) {
 			) : (
 				<div className='flex flex-col group gap-1'>
 					<div className='flex gap-3 items-center'>
-						{Icon && <Icon />}
-						{title}
+						<button
+							className='flex gap-3 items-center'
+							onClick={() => setIsOpen(!isOpen)}
+						>
+							{Icon && <Icon />}
+							{title}
+						</button>
 					</div>
-					<LineaBottom pathname={pathname} name={name} />
+					{isOpen ? (
+						<LineaBottom pathname={'/' + name} name={name} />
+					) : (
+						<LineaBottom pathname='' name={name} />
+					)}
+					{options?.length && <Options options={options} isOpen={isOpen} />}
 				</div>
 			)}
 		</div>

@@ -20,7 +20,13 @@ export default function Navbar() {
 			title: 'Categorías',
 		},
 		{ name: 'forum', href: '/forum', Icon: CommunityIcon, title: 'Comunidad' },
-		{ name: 'Login', href: null, options: [], Icon: ProfileIcon, title: 'Login' },
+		{
+			name: 'Login',
+			href: null,
+			options: ['Iniciar sesión', 'Registrarse'],
+			Icon: ProfileIcon,
+			title: 'Iniciar sesión',
+		},
 	];
 
 	return (
