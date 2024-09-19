@@ -10,16 +10,17 @@ import ProfileIcon from '/public/assets/login.svg';
 
 export default function Navbar() {
 	const navItems: ILinkNav[] = [
-		{ name: 'Inicio', href: '/home', Icon: HomeIcon },
-		{ name: 'Biblioteca', href: '/library', Icon: LibraryIcon },
+		{ name: 'home', href: '/home', Icon: HomeIcon, title: 'Inicio' },
+		{ name: 'library', href: '/library', Icon: LibraryIcon, title: 'Biblioteca' },
 		{
-			name: 'Categories',
+			name: 'categories',
 			href: null,
 			options: [],
 			Icon: CategoryIcon,
+			title: 'Categorías',
 		},
-		{ name: 'Comunidad', href: '/forum', Icon: CommunityIcon },
-		{ name: 'Login', href: null, options: [], Icon: ProfileIcon },
+		{ name: 'forum', href: '/forum', Icon: CommunityIcon, title: 'Comunidad' },
+		{ name: 'Login', href: null, options: [], Icon: ProfileIcon, title: 'Login' },
 	];
 
 	return (
