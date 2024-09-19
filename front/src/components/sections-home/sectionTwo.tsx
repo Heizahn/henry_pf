@@ -18,8 +18,8 @@ export default function SectionTwo({
 			style={{ scale, rotate }}
 			className='h-[90vh] sticky text-[3.5vw] flex flex-col items-center justify-center '
 		>
-			<div className='h-[85vh] w-11/12 shadow-xl shadow-gray-400 rounded-2xl grid grid-cols-6 place-content-center px-12 bg-white '>
-				<div className='col-span-4 flex flex-col justify-center items-start'>
+			<div className='h-[85vh] w-full shadow-xl shadow-gray-400 rounded-2xl  px-12 bg-white flex  justify-between items-center'>
+				<div className='w-full flex flex-col justify-center items-start'>
 					<h2 className=' text-4xl font-bold text-start'>
 						Lee cuando y donde quieras.
 					</h2>
@@ -45,9 +45,9 @@ export default function SectionTwo({
 				</div>
 
 				<div className='w-full h-[564px] relative'>
-					<div className='w-96 h-96 absolute bottom-20 right-0 bg-yellow-300 rounded-full'></div>
-					<div className='absolute -right-44 top-24'>
-						<Image src={ImagenRef} alt='' />
+					<div className='w-80 h-80 absolute bottom-1 right-40 bg-yellow-300 rounded-full'></div>
+					<div className='absolute right-0 top-0 object-contain w-[463px] h-[563px]'>
+						<Image src={ImagenRef} alt='' fill={true} />
 					</div>
 				</div>
 			</div>

@@ -8,6 +8,10 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			//Shadow inner black
+			boxShadow: {
+				'inner-black': 'inset 0px 3px 4px rgba(0, 0, 0, 0.6)',
+			},
 			colors: {
 				// Colores base (ya configurados)
 				white: {
@@ -28,30 +32,30 @@ const config: Config = {
 					500: '#606060',
 					700: '#404040',
 				},
-				yellow: {
-					DEFAULT: '#FFFFE0',
-					300: '#FFFFC2',
-					500: '#FFFFB0',
-					700: '#FFFF99',
-				},
+				// yellow: {
+				// 	DEFAULT: '#FFFFE0',
+				// 	300: '#FFFFC2',
+				// 	500: '#FFFFB0',
+				// 	700: '#FFFF99',
+				// },
 			},
 			// Tipografía
 			fontFamily: {
 				// Fuente principal
-				'sans': ['Roboto Mono', 'sans-serif'],
+				sans: ['Roboto Mono', 'sans-serif'],
 			},
 			// Tamaños de fuente
 			fontSize: {
-				'h1': ['64px', { fontWeight: 'bold' }],
-				'h2': ['40px', { fontWeight: 'bold' }],
-				'h3': ['24px', { fontWeight: 'bold' }],
-				'h5': ['20px', { fontWeight: 'bold' }],
-				'subtitle': ['24px', { fontWeight: 'normal' }],
+				h1: ['64px', { fontWeight: 'bold' }],
+				h2: ['40px', { fontWeight: 'bold' }],
+				h3: ['24px', { fontWeight: 'bold' }],
+				h5: ['20px', { fontWeight: 'bold' }],
+				subtitle: ['24px', { fontWeight: 'normal' }],
 				'p-bold': ['16px', { fontWeight: 'bold' }],
-				'p': ['16px', { fontWeight: 'normal' }],
+				p: ['16px', { fontWeight: 'normal' }],
 				'semi-small-bold': ['14px', { fontWeight: 'bold' }],
 				'semi-small': ['14px', { fontWeight: 'normal' }],
-				'small': ['12px', { fontWeight: 'normal' }],
+				small: ['12px', { fontWeight: 'normal' }],
 			},
 		},
 	},
