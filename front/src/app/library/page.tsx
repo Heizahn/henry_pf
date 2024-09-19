@@ -1,6 +1,9 @@
+"use client";
+import Image from 'next/image';
+//components
+import CardsSection from '../../components/cardBook/cardsSection';
 import Screen from '@/components/screen/screen';
 import SearchBooks from '@/components/SearchBar';
-import Image from 'next/image';
 //Assets
 import bgImg from "/public/assets/BGimg.png";
 
@@ -21,6 +24,9 @@ export default function Page() {
 						</button>
 					</div>
 				</div>
+			</div>
+			<div>
+				<CardsSection/>
 			</div>
 		</Screen>
 	);

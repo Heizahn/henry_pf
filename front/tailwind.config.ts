@@ -32,12 +32,12 @@ const config: Config = {
 					500: '#606060',
 					700: '#404040',
 				},
-				// yellow: {
-				// 	DEFAULT: '#FFFFE0',
-				// 	300: '#FFFFC2',
-				// 	500: '#FFFFB0',
-				// 	700: '#FFFF99',
-				// },
+				yellow: {
+					DEFAULT: '#FFFFE0',
+					300: '#FFFFC2',
+					500: '#FFFFB0',
+					700: '#FFFF99',
+				},
 			},
 			// Tipografía
 			fontFamily: {
@@ -51,14 +51,16 @@ const config: Config = {
 				h3: ['24px', { fontWeight: 'bold' }],
 				h5: ['20px', { fontWeight: 'bold' }],
 				subtitle: ['24px', { fontWeight: 'normal' }],
-				'p-bold': ['16px', { fontWeight: 'bold' }],
+				pBold: ['16px', { fontWeight: 'bold' }],
 				p: ['16px', { fontWeight: 'normal' }],
-				'semi-small-bold': ['14px', { fontWeight: 'bold' }],
-				'semi-small': ['14px', { fontWeight: 'normal' }],
+				semiSmallBold: ['14px', { fontWeight: 'bold' }],
+				semiSmall: ['14px', { fontWeight: 'normal' }],
+				smallBold: ['12px', { fontWeight: 'bold' }],
 				small: ['12px', { fontWeight: 'normal' }],
 			},
 		},
 	},
 	plugins: [],
 };
+
 export default config;
