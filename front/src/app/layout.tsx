@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/header/header';
+import Footer from '@/components/footer/footer';
 
 export const metadata: Metadata = {
 	title: 'Booknity',
@@ -16,7 +17,10 @@ export default function RootLayout({
 		<html lang='en'>
 			<body>
 				<Header />
-				{children}
+				<main className="flex-grow">
+					{children}
+				</main>
+				<Footer />
 			</body>
 		</html>
 	);
