@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function LinkNav({ link }: { link: ILinkNav }) {
-	const { name, Icon } = link;
+	const { name, Icon, title } = link;
 
 	const pathname = usePathname();
 
@@ -15,17 +15,17 @@ export default function LinkNav({ link }: { link: ILinkNav }) {
 					<Link href={link.href}>
 						<div className='flex flex-row gap-3 items-center'>
 							<Icon />
-							{name}
+							{title}
 						</div>
 					</Link>
 					<LineaBottom pathname={pathname} name={name} />
 				</div>
-			) : name === 'Categories' ? (
+			) : name === 'categories' ? (
 				<div className='flex flex-col gap-1 group'>
 					<div className='flex flex-row gap-3 items-center'>
 						{Icon && <Icon />}
 						<div className='flex gap-1 items-center'>
-							{name}
+							{title}
 							<span className='w-0 overflow-hidden transition-all duration-500 ease-in-out  group-hover:w-auto'>
 								▼
 							</span>
@@ -37,7 +37,7 @@ export default function LinkNav({ link }: { link: ILinkNav }) {
 				<div className='flex flex-col group gap-1'>
 					<div className='flex gap-3 items-center'>
 						{Icon && <Icon />}
-						{name}
+						{title}
 					</div>
 					<LineaBottom pathname={pathname} name={name} />
 				</div>
@@ -50,9 +50,7 @@ function LineaBottom({ pathname, name }: { pathname: string; name: string }) {
 	return (
 		<div
 			className={`border-2 ${
-				pathname.split('/')[1] === name.toLocaleLowerCase()
-					? 'border-gray-950'
-					: 'border-transparent'
+				pathname.split('/')[1] === name ? 'border-gray-950' : 'border-transparent'
 			} w-full transition-all duration-500 ease-in-out group-hover:border-gray-950 rounded-sm`}
 		></div>
 	);
