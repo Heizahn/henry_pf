@@ -12,12 +12,12 @@ const config: Config = {
 				// Colores base (ya configurados)
 				white: {
 					DEFAULT: '#FFFFFF',
-					300: '#F7F7F7',
-					500: '#FFFFFF',
-					700: '#C0C0C0',
+					300: '#F0F0F0',
+					500: '#D9D9D9',
+					700: '#BFBFBF',
 				},
 				blue: {
-					DEFAULT: '#000000',
+					DEFAULT: '#1E90FF',
 					300: '#1A7FD9',
 					500: '#187ACC',
 					700: '#1556A3',
