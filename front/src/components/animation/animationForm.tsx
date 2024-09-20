@@ -59,9 +59,9 @@ export default function AnimationForm({
 						</h2>
 						{children}
 						<div className='w-full flex justify-center '>
-							<button className='w-10 h-10 border-2 border-gray-400 flex items-center justify-center rounded-full '>
+							<span className='w-10 h-10 border-2 border-gray-400 flex items-center justify-center rounded-full '>
 								<GoogleIcon />
-							</button>
+							</span>
 						</div>
 					</div>
 				</div>

@@ -29,7 +29,7 @@ export default function Options({
 					showModal={showModal}
 					setShowModal={setShowModal}
 				>
-					<Login />
+					<Login setKeyForm={setKeyForm} />
 				</AnimationForm>
 			),
 		},
@@ -40,12 +40,12 @@ export default function Options({
 					showModal={showModal}
 					setShowModal={setShowModal}
 				>
-					<Register />
+					<Register setKeyForm={setKeyForm} />
 				</AnimationForm>
 			),
 		},
 	];
-	console.log(forms[keyForm].component);
+
 	return (
 		<>
 			<motion.div
