@@ -16,7 +16,7 @@ export default function SectionOne({
 			style={{ scale, rotate }}
 			className='sticky top-[10vh] h-[90vh] flex flex-col justify-center items-center'
 		>
-			<div className='h-[85vh] flex flex-col justify-center rounded-2xl'>
+			<div className='h-[80vh] flex flex-col justify-center rounded-2xl shadow-xl shadow-gray-400 '>
 				<h1 className=' text-[64px] font-bold text-center [&>span]:text-blue-600 '>
 					<span>Lee</span>, <span>comparte</span> y <span>descubre</span> en un
 					espacio creado para <span>tí</span>

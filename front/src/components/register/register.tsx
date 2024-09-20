@@ -3,7 +3,11 @@
 import { registerSchema } from './registerSchema';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-export default function Register() {
+export default function Register({
+	setKeyForm,
+}: {
+	setKeyForm: React.Dispatch<React.SetStateAction<number>>;
+}) {
 	return (
 		<>
 			<Formik
@@ -76,13 +80,13 @@ export default function Register() {
 			</Formik>
 			<div>
 				<div className='w-full py-3 flex flex-col gap-4 items-center'>
-					<button className='bg-transparent text-center text-blue-500 text-sm'>
-						¿Olvidaste tu contraseña?
-					</button>
 					<div className='flex flex-row gap-2'>
-						<p className='text-gray-950 text-sm'>¿No tienes cuenta?</p>
-						<button className='bg-transparent text-center text-blue-500 text-sm'>
-							Regístrate
+						<p className='text-gray-950 text-sm'>¿Ya tienes cuenta?</p>
+						<button
+							onClick={() => setKeyForm(0)}
+							className='bg-transparent text-center text-blue-500 text-sm'
+						>
+							Inicia sesión aquí
 						</button>
 					</div>
 				</div>

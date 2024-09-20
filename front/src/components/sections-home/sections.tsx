@@ -22,7 +22,7 @@ export default function Sections() {
 		requestAnimationFrame(raf);
 	}, []);
 	return (
-		<div ref={containerRef} className='relative h-[180vh]'>
+		<div ref={containerRef} className='relative h-[180vh] mb-24'>
 			<SectionOne scrollYProgress={scrollYProgress} />
 			<SectionTwo scrollYProgress={scrollYProgress} />
 		</div>

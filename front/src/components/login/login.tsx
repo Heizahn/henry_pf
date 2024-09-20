@@ -1,15 +1,27 @@
 'use client';
+import { UserLogin } from '@/lib/server/server';
 import { loginSchema } from './loginSchema';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useUserStore } from '@/store/useUserStore';
 
-export default function Login() {
+export default function Login({
+	setKeyForm,
+}: {
+	setKeyForm: React.Dispatch<React.SetStateAction<number>>;
+}) {
+	const { setUser } = useUserStore();
+
+	const submitLogin = async (values: { email: string; password: string }) => {
+		const user = await UserLogin(values.email, values.password);
+		setUser(user);
+	};
 	return (
 		<>
 			<Formik
 				initialValues={{ email: '', password: '' }}
 				validationSchema={loginSchema}
 				onSubmit={(values) => {
-					console.log(values);
+					submitLogin(values);
 				}}
 			>
 				<Form className='flex flex-col gap-4 items-center'>
@@ -34,9 +46,8 @@ export default function Login() {
 						<ErrorMessage name='password' component='p' className='text-red-500' />
 					</div>
 					<button
-						type='button'
+						type='submit'
 						className='bg-blue-600 mt-6 w-full text-white font-bold text-sm px-8 py-3 rounded-lg hover:bg-blue-700 active:shadow-inner-black transition-shadow duration-100'
-						onClick={() => {}}
 					>
 						Ingresar
 					</button>
@@ -44,12 +55,15 @@ export default function Login() {
 			</Formik>
 			<div>
 				<div className='w-full py-3 flex flex-col gap-4 items-center'>
-					<button className='bg-transparent text-center text-blue-500 text-sm'>
+					{/* <button className='bg-transparent text-center text-blue-500 text-sm'>
 						¿Olvidaste tu contraseña?
-					</button>
+					</button> */}
 					<div className='flex flex-row gap-2'>
 						<p className='text-gray-950 text-sm'>¿No tienes cuenta?</p>
-						<button className='bg-transparent text-center text-blue-500 text-sm'>
+						<button
+							onClick={() => setKeyForm(1)}
+							className='bg-transparent text-center text-blue-500 text-sm'
+						>
 							Regístrate
 						</button>
 					</div>

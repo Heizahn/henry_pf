@@ -2,15 +2,21 @@
 import { ILinkNav } from '@/interfaces/interfaces';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Options from './options';
+import { useUserStore } from '@/store/useUserStore';
+import UserButton from './user-button';
+import LineaBottom from './linea-bottom';
 
 export default function LinkNav({ link }: { link: ILinkNav }) {
 	const { name, Icon, title, options } = link;
+	const { user } = useUserStore();
 
 	const pathname = usePathname();
 	const [isOpen, setIsOpen] = useState(false);
-
+	useEffect(() => {
+		setIsOpen(false);
+	}, [pathname]);
 	return (
 		<div className=' text-gray-700 hover:text-gray-950 cursor-pointer transition-colors duration-500 py-1 px-0.5 text-lg font-semibold '>
 			{link.href ? (
@@ -36,7 +42,7 @@ export default function LinkNav({ link }: { link: ILinkNav }) {
 					</div>
 					<LineaBottom pathname={pathname} name={name} />
 				</div>
-			) : (
+			) : user === null ? (
 				<div className='flex flex-col group gap-1'>
 					<div className='flex gap-3 items-center'>
 						<button
@@ -56,17 +62,9 @@ export default function LinkNav({ link }: { link: ILinkNav }) {
 						<Options options={options} isOpen={isOpen} setIsOpen={setIsOpen} />
 					)}
 				</div>
+			) : (
+				<UserButton isOpen={isOpen} setIsOpen={setIsOpen} />
 			)}
 		</div>
-	);
-}
-
-function LineaBottom({ pathname, name }: { pathname: string; name: string }) {
-	return (
-		<div
-			className={`border-2 ${
-				pathname.split('/')[1] === name ? 'border-gray-950' : 'border-transparent'
-			} w-full transition-all duration-500 ease-in-out group-hover:border-gray-950 rounded-sm`}
-		></div>
 	);
 }
