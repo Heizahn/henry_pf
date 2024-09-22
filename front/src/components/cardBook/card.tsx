@@ -7,7 +7,7 @@ import FavoriteIcon  from '/public/assets/favorite.svg';
 
 const Card: React.FC<{ book: IBook }> = ({ book: { book_id, title, author, categories,photoUrl} }) => {
     return (
-        <div className="bg-white-300 w-full h-72 p-4 border border-gray-200 rounded-lg shadow-md ">
+        <div className="bg-white-300 w-full h-full flex flex-col justify-evenly p-4 border border-gray-200 rounded-lg shadow-md ">
             <div key={book_id} className="flex items-center">
                 <div className="w-full flex justify-center items-center ">
                     <img src={photoUrl} alt={title} className="h-64 object-contain" />
@@ -22,7 +22,17 @@ const Card: React.FC<{ book: IBook }> = ({ book: { book_id, title, author, categ
                     </div>
                     <h4 className="text-h5 font-bold">{title}</h4>
                     <h5 className="text-pBold text-gray-700">{author}</h5>
-                    <p className="text-semismall text-gray-600">{categories.map((category) => category.name).join(', ')}</p>
+                    <div className=' px-6'>
+                        {categories.map((category) => (
+                            <Link href={`/library/categories/${category.name}`}>
+                            <button key={category.id} className='w-fit px-4 py-1 rounded-md text-semiSmall border border-white-700 m-1 hover:bg-white-500'>
+
+                                {category.name}
+                            </button>
+                            </Link>
+                            ))}
+                        
+                    </div>
 
                     <div className="flex items-center justify-center mt-2">
                         <span className="font-bold text-lg mr-2">4.2</span>

@@ -1,5 +1,5 @@
 "use client"
-
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Card from "@/components/cardBook/card" 
 import Lupa from "/public/assets/Lupa.svg"; // Icono de lupa
@@ -52,20 +52,13 @@ const SearchBooks = () => {
         />
         <button
           onClick={handleSearch}
-          className="absolute right-0 p-4 text-blue-500 hover:text-blue-700 focus:outline-none"
+          className="absolute right-0 p-6 text-blue-500 hover:text-blue-700 focus:outline-none"
         >
-          <span>
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="#D9D9D9"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-            
-              <path d="M19.8 20.9834L13.3168 14.5001..." fill="#606060" />
-            </svg>
-          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <circle cx="10" cy="10" r="7" />
+            <line x1="21" y1="21" x2="15" y2="15" />
+          </svg>
         </button>
       </div>
 

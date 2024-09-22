@@ -1,5 +1,6 @@
 "use client"
 import { IBook } from '@/interfaces/Ibook';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 
@@ -7,10 +8,11 @@ import { useEffect, useState } from 'react';
 export default function Page ({params}: {params: {id: string}}) {
     const [book, setBook] = useState<IBook | null>(null);
 
+
     useEffect(() => {
         const fecthBookData = async () =>  {
             try {
-                const responde = await fetch(`http://localhost:3000/books/${id}`);
+                const responde = await fetch(`http://localhost:3000/books/${params.id}`);
                 const data: IBook = await responde.json();
                 setBook(data);
                 console.log(data);
@@ -25,10 +27,7 @@ export default function Page ({params}: {params: {id: string}}) {
 
     },[])
 
-    const { id } = params;
-    console.log(id);
     
-    // const bookSelected = book.find((book) => book.id === Number(id));
     
     if (!book) {
         return <div>Book not found</div>;
@@ -43,12 +42,14 @@ export default function Page ({params}: {params: {id: string}}) {
                 <div className='w-full h-full flex flex-col gap-4 '>
                     <h1 className='text-h2 border-b-2 px-6'>{book.title}</h1>
                     <p className='text-h3 text-black-500 px-6 mb-5'>{book.author}</p>
-                    <div className='w-4/5'>
+                    <div className=' px-6'>
                         {book.categories.map((category) => (
-                            <button key={category.id} className='bg-white-500 w-fit px-4 py-1 rounded-md text-semiSmall border border-white-700 m-2 hover:bg-white-700'>
+                            <Link href={`/library/categories/${category.name}`}>
+                            <button key={category.id} className='w-fit px-4 py-1 rounded-md text-semiSmall border border-white-700 m-1 hover:bg-white-500'>
 
                                 {category.name}
                             </button>
+                            </Link>
                             ))}
                         
                     </div>
