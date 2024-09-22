@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Card from "@/components/cardBook/card" 
 import Lupa from "/public/assets/Lupa.svg"; // Icono de lupa
+import { IBook } from '@/interfaces/Ibook';
 
 const SearchBooks = () => {
   const [books, setBooks] = useState<IBook[]>([]);
@@ -31,7 +32,10 @@ const SearchBooks = () => {
       books.filter((book) =>
         book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        book.genre.toLowerCase().includes(searchTerm.toLowerCase()) // Ajustado a string
+        book.categories
+        .filter((category) => 
+          category.name.toLowerCase().includes(searchTerm.toLowerCase()) // Accediendo a category.name
+        ) // Ajustado a string
       )
     );
   };
@@ -65,12 +69,11 @@ const SearchBooks = () => {
         </button>
       </div>
 
-      <div className="w-full p-4 mt-24 mb-12">
-        <h1 className="text-h3 text-center">Explora y Encuentra Tu Próxima Lectura</h1>
+      <div className="w-full p-4">
         <div className="grid grid-cols-2 gap-12 w-full mt-16">
           {filteredBooks.length > 0 ? (
             filteredBooks.map((book) => (
-              <Card key={book.id} book={book} />
+              <Card key={book.book_id} book={book} />
             ))
           ) : (
             hasSearched && <p>No se encontraron resultados.</p>

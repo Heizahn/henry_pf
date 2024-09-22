@@ -1,8 +1,18 @@
 export interface IBook {
-    id: number;
+    book_id: number;
     title: string;
-    genre: string;
     author: string;
-    year: number;
-    cover: string;
+    publication_date: number;
+    description: string;
+    categories: Category[];
+    photoUrl: string;
+}
+
+export interface Category {
+    id: number;
+    name: string;
+  }
+
+export interface CardProps{
+    books: IBook[];
 }

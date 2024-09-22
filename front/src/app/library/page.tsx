@@ -8,6 +8,7 @@ import SearchBooks from '@/components/SearchBar';
 import bgImg from "/public/assets/BGimg.png";
 
 export default function Page() {
+	
 	return (
 		<Screen>
 			<div className='width-full '>
