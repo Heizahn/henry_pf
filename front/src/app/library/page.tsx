@@ -13,7 +13,7 @@ export default function Page() {
 		<Screen>
 			<div className='width-full '>
 				<div className='flex w-full items-center justify-center'>
-				<Image className='absolute z-[-1]' src={bgImg} alt='background'/>
+				{/* <Image className='absolute z-[-1]' src={bgImg} alt='background'/> */}
 
 					<div className='flex w-3/5 flex-col items-center justify-center gap-12 my-12'>
 						<h1 className='w-11/12 text-5xl font-bold text-center'><span className='text-blue'>Miles</span> de libros esperando por ti</h1>

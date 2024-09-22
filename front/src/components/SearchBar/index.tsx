@@ -63,7 +63,7 @@ const SearchBooks = () => {
       </div>
 
       <div className="w-full p-4">
-        <div className="grid grid-cols-2 gap-12 w-full mt-16">
+        <div className="grid grid-cols-2 gap-12 w-full ">
           {filteredBooks.length > 0 ? (
             filteredBooks.map((book) => (
               <Card key={book.book_id} book={book} />
