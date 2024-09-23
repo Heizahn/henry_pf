@@ -2,10 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 /* styles/globals.css */
-@font-face {
+/* @font-face {
     font-family: 'Roboto Mono';
     src: url('/front/public/fonts/RobotoMono-Regular.ttf') format('ttf');
     font-weight: 400;
@@ -17,5 +15,4 @@
     src: url('/front/public/fonts/RobotoMono-Bold.ttf') format('ttf');
     font-weight: 700;
     font-style: bold;
-  }
-  
+  } */
