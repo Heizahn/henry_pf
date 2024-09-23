@@ -14,13 +14,14 @@ import { HOST_API } from '@/config/ENV';
 export default function Page() {
 	const [books, setBooks] = useState<IBook[]>([]);
 	const [booksFiltered, setBooksFiltered] = useState<IBook[]>([]);
-
+	
 	useEffect(() => {
 		const fetchBooks = async () => {
 			try {
 				const response = await fetch(`${HOST_API}/books`);
 				if (!response.ok) throw new Error('Error fetching books');
 				const data: IBook[] = await response.json();
+				
 
 				setBooks(data);
 				// console.log(data);
