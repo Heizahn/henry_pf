@@ -3,17 +3,26 @@ import { UserLogin } from '@/lib/server/server';
 import { loginSchema } from './loginSchema';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useUserStore } from '@/store/useUserStore';
+import { useRouter } from 'next/navigation';
 
 export default function Login({
 	setKeyForm,
 }: {
 	setKeyForm: React.Dispatch<React.SetStateAction<number>>;
 }) {
+	const router = useRouter();
 	const { setUser } = useUserStore();
 
 	const submitLogin = async (values: { email: string; password: string }) => {
-		const user = await UserLogin(values.email, values.password);
-		setUser(user);
+		try {
+			const user = await UserLogin(values.email, values.password);
+
+			setUser(user);
+			alert('Iniciando sesión...');
+			router.push('/library');
+		} catch (error) {
+			if (error instanceof Error) alert(error.message);
+		}
 	};
 	return (
 		<>
