@@ -1,20 +1,44 @@
 'use client';
 
+import { IUserRegister } from '@/interfaces/interfaces';
 import { registerSchema } from './registerSchema';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { UserLogin, UserRegister } from '@/lib/server/server';
+import { useUserStore } from '@/store/useUserStore';
+import { useRouter } from 'next/navigation';
 
 export default function Register({
 	setKeyForm,
 }: {
 	setKeyForm: React.Dispatch<React.SetStateAction<number>>;
 }) {
+	const router = useRouter();
+	const { setUser } = useUserStore();
+
+	const handlerSubmit = async (values: IUserRegister) => {
+		try {
+			await UserRegister(values);
+			alert('Usuario registrado exitosamente');
+
+			const user = await UserLogin(values.email, values.password);
+
+			alert('Iniciando sesión...');
+			setUser(user);
+
+			router.push('/library');
+		} catch (error) {
+			if (error instanceof Error) alert(error.message);
+		}
+	};
 	return (
 		<>
 			<Formik
-				initialValues={{ email: '', password: '' }}
+				initialValues={{ fullName: '', email: '', password: '' }}
 				validationSchema={registerSchema}
 				onSubmit={(values) => {
-					console.log(values);
+					const { fullName, email, password } = values;
+
+					handlerSubmit({ fullName, email, password });
 				}}
 			>
 				<Form className='flex flex-col gap-4 items-center'>
@@ -70,11 +94,10 @@ export default function Register({
 						</div>
 					</div>
 					<button
-						type='button'
+						type='submit'
 						className='bg-blue-600 mt-6 w-full text-white font-bold text-sm px-8 py-3 rounded-lg hover:bg-blue-700 active:shadow-inner-black transition-shadow duration-100'
-						onClick={() => {}}
 					>
-						Ingresar
+						Registrarse
 					</button>
 				</Form>
 			</Formik>

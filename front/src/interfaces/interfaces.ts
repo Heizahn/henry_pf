@@ -33,3 +33,9 @@ export interface IOptionsUser {
 // 	iat?: number;
 // 	exp?: number;
 // }
+
+export interface IUserRegister {
+	fullName: string;
+	email: string;
+	password: string;
+}
