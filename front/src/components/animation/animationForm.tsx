@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import CloseIcon from '/public/assets/close.svg';
 import GoogleIcon from '/public/assets/Google.svg';
+import { signIn } from 'next-auth/react';
 
 interface IAnimationFormProps {
 	children: React.ReactNode;
@@ -59,9 +60,9 @@ export default function AnimationForm({
 						</h2>
 						{children}
 						<div className='w-full flex justify-center '>
-							<span className='w-10 h-10 border-2 border-gray-400 flex items-center justify-center rounded-full '>
+							<button className='w-10 h-10 border-2 border-gray-400 flex items-center justify-center rounded-full '>
 								<GoogleIcon />
-							</span>
+							</button>
 						</div>
 					</div>
 				</div>

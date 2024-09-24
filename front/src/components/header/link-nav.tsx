@@ -18,11 +18,11 @@ export default function LinkNav({ link }: { link: ILinkNav }) {
 		setIsOpen(false);
 	}, [pathname]);
 	return (
-		<div className=' text-gray-700 hover:text-gray-950 cursor-pointer transition-colors duration-500 py-1 px-0.5 text-lg font-semibold '>
+		<div className=' text-gray-700 hover:text-gray-950 cursor-pointer transition-colors duration-500 py-1 px-0.5 text-lg text-semiSmallBold '>
 			{link.href ? (
 				<div className='flex flex-col group gap-1'>
 					<Link href={link.href}>
-						<div className='flex flex-row gap-3 items-center'>
+						<div className='flex flex-row gap-3 items-center '>
 							<Icon />
 							{title}
 						</div>
@@ -30,8 +30,8 @@ export default function LinkNav({ link }: { link: ILinkNav }) {
 					<LineaBottom pathname={pathname} name={name} />
 				</div>
 			) : name === 'categories' ? (
-				<div className='flex flex-col gap-1 group'>
-					<div className='flex flex-row gap-3 items-center'>
+				<div className='flex flex-col gap-1 group '>
+					<div className='flex flex-row gap-3 items-center  '>
 						{Icon && <Icon />}
 						<div className='flex gap-1 items-center'>
 							{title}
@@ -43,10 +43,10 @@ export default function LinkNav({ link }: { link: ILinkNav }) {
 					<LineaBottom pathname={pathname} name={name} />
 				</div>
 			) : user === null ? (
-				<div className='flex flex-col group gap-1'>
-					<div className='flex gap-3 items-center'>
+				<div className='flex flex-col group gap-1 '>
+					<div className='flex gap-3 items-center '>
 						<button
-							className='flex gap-3 items-center'
+							className='flex gap-3 items-center '
 							onClick={() => setIsOpen(!isOpen)}
 						>
 							{Icon && <Icon />}

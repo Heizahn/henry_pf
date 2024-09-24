@@ -27,7 +27,7 @@ const SearchBooks = ({
 
 	return (
 		<div className='w-full flex flex-col items-center'>
-			<div className='relative w-full flex justify-center items-center rounded-md'>
+			<div className='relative w-full flex justify-center items-center rounded-md text-semiSmall'>
 				<input
 					type='text'
 					placeholder='Buscar por título, autor o género...'

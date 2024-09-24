@@ -39,8 +39,8 @@ export default function Page() {
 				<div className='flex w-full items-center justify-center'>
 					{/* <Image className='absolute z-[-1]' src={bgImg} alt='background'/> */}
 
-					<div className='flex w-3/5 flex-col items-center justify-center gap-12 my-12'>
-						<h1 className='w-11/12 text-5xl font-bold text-center'>
+					<div className='flex w-3/5 flex-col items-center justify-center gap-12 mb-12 mt-8'>
+						<h1 className='w-11/12 text-h2 font-bold text-center'>
 							<span className='text-blue'>Miles</span> de libros esperando por ti
 						</h1>
 						<p className='w-60 text-center'>
@@ -48,7 +48,7 @@ export default function Page() {
 						</p>
 						<button
 							type='button'
-							className=' bg-white-DEFAULT text-black-DEFAULT border-2 border-blue font-bold text-sm px-10 py-3 rounded-md hover:bg-white-300  hover:ring-blue active:shadow-inner-black transition-shadow duration-100'
+							className=' bg-white-DEFAULT text-black-DEFAULT border-2 border-blue font-bold text-smallBold px-10 py-3 rounded-md hover:bg-white-300  hover:ring-blue active:shadow-inner-black transition-shadow duration-100'
 						>
 							Ver recomendaciones
 						</button>

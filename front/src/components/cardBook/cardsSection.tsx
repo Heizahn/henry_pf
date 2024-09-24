@@ -8,7 +8,7 @@ import { IBook } from '@/interfaces/Ibook';
 const CardsSection = ({ books }: { books: IBook[] }) => {
 	return (
 		<div className='w-full p-4 mb-12'>
-			<div className='grid grid-cols-2 gap-12 w-full '>
+			<div className='grid grid-cols-2 gap-12 w-full items-center'>
 				{books.map((book) => (
 					<Card key={book.book_id} book={book} />
 				))}

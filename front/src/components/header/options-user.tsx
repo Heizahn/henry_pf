@@ -12,7 +12,7 @@ export default function OptionsUser({ options, isOpen, setIsOpen }: IOptionsUser
 	return (
 		<>
 			<motion.div
-				className='absolute w-auto top-16 right-0 flex flex-col gap-1 items-center shadow-sm shadow-gray-400 rounded-sm px-5 pt-3 pb-5 bg-white'
+				className='absolute w-auto top-16 right-0 flex flex-col gap-1 items-center shadow-sm shadow-gray-400 rounded-sm px-5 pt-3 pb-5 bg-white  '
 				initial={{ scaleY: 0, y: -50, x: 0, opacity: 0 }}
 				animate={
 					isOpen
@@ -33,10 +33,10 @@ export default function OptionsUser({ options, isOpen, setIsOpen }: IOptionsUser
 				{options.map((item, key) => (
 					<div
 						key={key}
-						className=' text-gray-700 hover:text-gray-950 cursor-pointer transition-colors duration-500 py-1 px-0.5 text-lg font-semibold '
+						className=' text-gray-700 hover:text-gray-950 cursor-pointer transition-colors duration-500 py-1 px-0.5 text-lg text-smallBold '
 					>
 						<button
-							className='flex gap-3 items-center'
+							className='flex gap-3 items-center '
 							key={key}
 							onClick={() => {
 								setIsOpen(false);
@@ -44,7 +44,7 @@ export default function OptionsUser({ options, isOpen, setIsOpen }: IOptionsUser
 							}}
 						>
 							{item?.icon && <item.icon />}
-							<span className='text-nowrap'>{item.title}</span>
+							<span className='text-nowrap '>{item.title}</span>
 						</button>
 					</div>
 				))}

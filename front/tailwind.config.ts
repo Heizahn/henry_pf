@@ -12,7 +12,15 @@ const config: Config = {
 			boxShadow: {
 				'inner-black': 'inset 0px 3px 4px rgba(0, 0, 0, 0.6)',
 				form: '5px 5px 5px rgba(0, 0, 0, 0.55)',
+				fav: '0px 0px 8px rgba(255, 255, 255, 0.90)',
+				menu: '4px 6px 4px rgba(0, 0, 0, 0.10)',
 			},
+			dropShadow: {
+				'dark': [
+				  '0 1px 1px rgb(0 0 0 / 0.2)',  // sombra más oscura
+				  '0 1px 1px rgb(0 0 0 / 0.2)',  // sombra secundaria más oscura
+				],
+			  },
 			colors: {
 				// Colores base (ya configurados)
 				white: {
@@ -39,6 +47,9 @@ const config: Config = {
 					500: '#FFFFB0',
 					700: '#FFFF99',
 				},
+			},
+			backgroundImage: {
+				'custom-gradient': 'linear-gradient(180deg, #00C9FF 0%, #92FE9D 100%)',
 			},
 			// Tipografía
 			fontFamily: {

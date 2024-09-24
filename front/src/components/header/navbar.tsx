@@ -13,7 +13,7 @@ export default function Navbar() {
 	const { isLoading } = useIsLoading();
 	const navItems: ILinkNav[] = [
 		// { name: 'home', href: '/home', Icon: HomeIcon, title: 'Inicio' },
-		{ name: 'library', href: '/library', Icon: LibraryIcon, title: 'Biblioteca' },
+		{ name: 'library', href: '/library', Icon: LibraryIcon, title: 'Biblioteca'},
 		// {
 		// 	name: 'categories',
 		// 	href: null,
@@ -32,7 +32,7 @@ export default function Navbar() {
 	];
 
 	return (
-		<nav className='flex gap-10 items-center'>
+		<nav className='flex gap-10 items-center '>
 			{!isLoading && navItems.map((item, index) => <LinkNav key={index} link={item} />)}
 		</nav>
 	);

@@ -49,28 +49,28 @@ export default function Options({
 	return (
 		<>
 			<motion.div
-				className='absolute top-16 flex flex-col gap-1 items-center shadow-sm shadow-gray-400 rounded-sm px-5 pt-3 pb-5 bg-white'
-				initial={{ scaleY: 0, y: -50, x: 0, opacity: 0 }}
+				className='absolute top-16 flex flex-col items-start border-black-700 border border-t-0 shadow-menu  cursor-default bg-white'
+				initial={{ scaleY: 0, y: -50, x: 0, opacity: .2 }}
 				animate={
 					isOpen
 						? {
 								scaleY: 1,
 								y: 0,
 								opacity: 1,
-								transition: { delay: 0.1, duration: 0.3 },
+								transition: { delay: 0.1, duration: 0.2 },
 						  }
 						: {
 								scaleY: 0,
 								y: -50,
 								opacity: 0,
-								transition: { delay: 0.1, duration: 0.3 },
+								transition: { delay: 0.0, duration: 0.2 },
 						  }
 				}
 			>
 				{options.map((item, key) => (
 					<div
 						key={key}
-						className='text-gray-700 hover:text-gray-950 cursor-pointer transition-colors duration-500 py-1 px-0.5 text-lg font-semibold '
+						className='w-full text-black-700 hover:text-black hover:bg-white-300 cursor-pointer transition-colors duration-100 text-smallBold p-6 py-4'
 					>
 						<button
 							key={key}

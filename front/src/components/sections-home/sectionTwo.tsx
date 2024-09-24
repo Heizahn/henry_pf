@@ -15,10 +15,11 @@ export default function SectionTwo({
 
 	return (
 		<motion.div
+			
 			style={{ scale, rotate }}
 			className='h-[90vh] sticky text-[3.5vw] flex flex-col items-center justify-center '
 		>
-			<div className='h-[80vh] w-full  rounded-2xl  px-12 bg-white flex  justify-between items-center shadow-xl shadow-gray-400'>
+			<div id='section-two' className='h-[80vh] w-full  rounded-2xl  px-12 bg-white flex  justify-between items-center shadow-xl shadow-gray-400'>
 				<div className='w-full flex flex-col justify-center items-start'>
 					<h2 className=' text-4xl font-bold text-start'>
 						Lee cuando y donde quieras.
