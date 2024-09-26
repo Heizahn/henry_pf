@@ -1,14 +1,14 @@
 'use client';
 import { LoginGoogle } from '@/lib/client/client';
 // import { HOST_API } from '@/config/ENV';
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { useUserStore } from '@/store/useUserStore';
 import { useRouter } from 'next/navigation';
 
 export default function Page() {
 	const { setUser } = useUserStore();
 	const router = useRouter();
-	const handleCallback = async () => {
+	const handleCallback = useCallback(async () => {
 		try {
 			// Obtener el token de la URL
 			const urlParams = new URLSearchParams(window.location.search);
@@ -25,10 +25,9 @@ export default function Page() {
 		} catch (error) {
 			console.error('Error during callback:', error);
 		}
-	};
+	}, [router, setUser]);
 
-	useEffect(() => {
-		handleCallback();
-	}, []);
+	handleCallback();
+
 	return <p>Google</p>;
 }
