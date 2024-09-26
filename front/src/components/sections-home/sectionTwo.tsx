@@ -15,11 +15,13 @@ export default function SectionTwo({
 
 	return (
 		<motion.div
-			
 			style={{ scale, rotate }}
 			className='h-[90vh] sticky text-[3.5vw] flex flex-col items-center justify-center '
 		>
-			<div id='section-two' className='h-[80vh] w-full  rounded-2xl  px-12 bg-white flex  justify-between items-center shadow-xl shadow-gray-400'>
+			<div
+				id='section-two'
+				className='h-[80vh] w-full  rounded-2xl  px-12 bg-white flex  justify-between items-center shadow-xl shadow-gray-400'
+			>
 				<div className='w-full flex flex-col justify-center items-start'>
 					<h2 className=' text-4xl font-bold text-start'>
 						Lee cuando y donde quieras.
@@ -35,6 +37,7 @@ export default function SectionTwo({
 					<button
 						className='mt-9 flex items-center justify-start gap-6 group'
 						type='button'
+						onClick={() => alert('Coming soon')}
 					>
 						<span className='bg-yellow-300 text-black/95 font-bold text-sm px-8 py-3 rounded-lg group-hover:bg-yellow-400 group-active:shadow-inner-black transition-all duration-100'>
 							Descarga la app

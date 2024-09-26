@@ -3,8 +3,7 @@
 import { IUserRegister } from '@/interfaces/interfaces';
 import { registerSchema } from './registerSchema';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { UserLogin, UserRegister } from '@/lib/server/server';
-import { useUserStore } from '@/store/useUserStore';
+import { UserRegister } from '@/lib/server/server';
 import { useRouter } from 'next/navigation';
 
 export default function Register({
@@ -13,19 +12,13 @@ export default function Register({
 	setKeyForm: React.Dispatch<React.SetStateAction<number>>;
 }) {
 	const router = useRouter();
-	const { setUser } = useUserStore();
 
 	const handlerSubmit = async (values: IUserRegister) => {
 		try {
 			await UserRegister(values);
 			alert('Usuario registrado exitosamente');
 
-			const user = await UserLogin(values.email, values.password);
-
-			alert('Iniciando sesión...');
-			setUser(user);
-
-			router.push('/library');
+			router.push('/');
 		} catch (error) {
 			if (error instanceof Error) alert(error.message);
 		}
