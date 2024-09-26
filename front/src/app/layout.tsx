@@ -3,6 +3,7 @@ import { Roboto_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header/header';
 import Footer from '@/components/footer/footer';
+import BannerDonation from '@/components/bannerDonation/banner';
 
 export const metadata: Metadata = {
 	title: 'Booknity',
@@ -23,6 +24,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={roboto_mono.className}>
+				<BannerDonation />
 				<Header />
 				<main className='flex-grow'>{children}</main>
 				<Footer />

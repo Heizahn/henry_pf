@@ -49,7 +49,7 @@ export default function Options({
 	return (
 		<>
 			<motion.div
-				className='absolute top-16 flex flex-col items-start border-black-700 border border-t-0 shadow-menu  cursor-default bg-white'
+				className='absolute top-14 flex flex-col items-start border-black-700 border border-t-0 shadow-menu  cursor-default bg-white'
 				initial={{ scaleY: 0, y: -50, x: 0, opacity: .2 }}
 				animate={
 					isOpen

@@ -16,9 +16,9 @@ export default function SectionOne({
 	return (
 		<motion.div
 			style={{ scale, rotate }}
-			className='sticky top-[10vh] h-[90vh] flex flex-col'
+			className='sticky top-[10vh] h-[80vh] flex flex-col'
 		>
-			<div className='h-[80vh] flex flex-col text-center p-32	mx-auto justify-center rounded-2xl shadow-xl shadow-gray-400 m-4 '>
+			<div className='h-[80vh] flex flex-col text-center p-32	mx-auto justify-center rounded-2xl shadow-xl shadow-gray-400 m-4 my-0 '>
 				<h1 className=' text-5xl w-[900px] font-bold text-center [&>span]:text-blue mt-12 '>
 					<span>Lee</span>, <span>comparte</span> y <span>descubre</span> en un
 					espacio creado para <span>tí</span>
