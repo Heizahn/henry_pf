@@ -1,9 +1,8 @@
 'use client';
 
 import { useTransform, motion, MotionValue } from 'framer-motion';
-import GoTo from '/public/assets/Go To.svg';
+import GoTo from '/public/assets/Goto.svg';
 import Link from 'next/link';
-import SectionTwo from './sectionTwo';
 
 export default function SectionOne({
 	scrollYProgress,
@@ -52,10 +51,10 @@ export default function SectionOne({
 				</div>
 
 				<div className='flex justify-center mt-12 mb-12'>
-  <Link href="#section-two" type='button' className='w-8 h-8'>
-    <GoTo />
-  </Link>
-</div>
+					<Link href='#section-two' type='button' className='w-8 h-8'>
+						<GoTo />
+					</Link>
+				</div>
 			</div>
 		</motion.div>
 	);
