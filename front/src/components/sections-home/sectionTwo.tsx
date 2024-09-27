@@ -16,7 +16,7 @@ export default function SectionTwo({
 	return (
 		<motion.div
 			style={{ scale, rotate }}
-			className='h-[90vh] sticky text-[3.5vw] flex flex-col items-center justify-center '
+			className='h-[90vh] sticky top-[10vh] text-[3.5vw] flex flex-col items-center justify-center '
 		>
 			<div
 				id='section-two'

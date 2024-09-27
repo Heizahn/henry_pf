@@ -29,7 +29,7 @@ export default function AnimationForm({
 	};
 
 	return (
-		<div className='fixed top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,0.7)] z-10 flex justify-center items-center cursor-default'>
+		<div className='fixed top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,0.7)] z-50 flex justify-center items-center cursor-default'>
 			<motion.div
 				initial={{ scale: 0, opacity: 0, rotate: 10 }}
 				animate={
@@ -67,7 +67,10 @@ export default function AnimationForm({
 						</h2>
 						{children}
 						<div className='w-full flex justify-center '>
-							<button className='w-10 h-10 border-2 border-gray-400 flex items-center justify-center rounded-full '>
+							<button
+								className='w-10 h-10 border-2 border-gray-400 flex items-center justify-center rounded-full'
+								onClick={handleGoogleAuth}
+							>
 								<GoogleIcon />
 							</button>
 						</div>
