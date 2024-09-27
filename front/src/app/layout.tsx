@@ -23,10 +23,14 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={`${roboto_mono.className}`}>
-				<BannerDonation />
-				<Header />
-				<main className='flex-grow'>{children}</main>
+			<body
+				className={`${roboto_mono.className} h-screen flex flex-col justify-between`}
+			>
+				<header className='w-full bg-white sticky top-[0] z-10'>
+					<BannerDonation />
+					<Header />
+				</header>
+				<main>{children}</main>
 				<Footer />
 			</body>
 		</html>
