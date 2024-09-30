@@ -44,7 +44,7 @@ const Page = () => {
 };
 
   return (
-    <div className="w-content mx-10 mb-10 my-2 h-full flex rounded-xl border-2 border-black-500">
+    <div className="w-content mx-10 mb-10 my-2 h-content flex rounded-xl border-2 border-black-500">
       {/* COPY */}
       <div className="w-3/6 h-[32rem] px-12 py-4 flex flex-col items-center justify-center mb-4">
         <div className="w-full flex flex-col gap-4">

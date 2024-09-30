@@ -5,6 +5,7 @@ import { useCallback, useState } from 'react';
 import { useUserStore } from '@/store/useUserStore';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import AnimationTextAuth from '@/components/animation/animation-text-auth';
 
 export default function Page() {
@@ -19,7 +20,7 @@ export default function Page() {
 			const accessToken = urlParams.get('token');
 
 			if (accessToken) {
-				const user = LoginGoogle(accessToken);
+				const user = await LoginGoogle(accessToken);
 				console.log(user);
 				setUser(user);
 				setIsLoading(false);
@@ -28,7 +29,6 @@ export default function Page() {
 				});
 			} else {
 				console.error('No access token received');
-
 				new Promise((resolve) => setTimeout(resolve, 200)).then(() => {
 					router.replace('/');
 				});
@@ -38,7 +38,10 @@ export default function Page() {
 		}
 	}, [router, setUser]);
 
-	handleCallback();
+	// Uso de useEffect para ejecutar la función al montar el componente
+	useEffect(() => {
+		handleCallback();
+	}, [handleCallback]); // `handleCallback` como dependencia
 
 	return (
 		<div className='fixed top-0 w-screen h-screen bg-white z-10 flex justify-center items-center'>

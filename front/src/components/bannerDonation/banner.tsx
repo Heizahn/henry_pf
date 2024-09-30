@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 const BannerDonation = () => {
 	return (
-		<div className='sticky top-0 w-full h-[3vh] bg-white flex justify-center items-center z-20'>
-			<div className='absolute top-3 pl-4 left-0'>
+		<div className='sticky top-8 bottom-30 w-0 bg-white-300 h-[3vh] flex justify-center items-center z-20'>
+			<div className='absolute  left-80'>
 				<Link href='../donation'>
 					<button className='relative flex items-center justify-center text-smallBold p-0 border-none bg-transparent cursor-pointer transition-all duration-50 select-none touch-manipulation transform'>
 						<span className='shadow absolute top-0 left-0 w-full h-full bg-black/25 rounded-lg translate-y-0.5 transition-transform duration-[600ms] ease-[cubic-bezier(.3,.7,.4,1)] hover:translate-y-1 active:translate-y-[0.05rem]'></span>
