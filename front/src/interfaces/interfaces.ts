@@ -17,7 +17,7 @@ export interface IUser {
 	photoUrl: string;
 	description: string;
 	books: IBook[];
-	friends: Array<any>;
+	friends: Array<string>;
 	token: string;
 }
 
