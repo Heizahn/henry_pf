@@ -3,11 +3,11 @@
 import { ILinkNav } from '@/interfaces/interfaces';
 import LinkNav from './link-nav';
 // import HomeIcon from '/public/assets/gite.svg';
-import LibraryIcon from '@/public/assets/shelves.svg';
+import LibraryIcon from '/public/assets/shelves.svg';
 // import CategoryIcon from '/public/assets/category.svg';
-import CommunityIcon from '@/public/assets/groups.svg';
-import ProfileIcon from '@/public/assets/login.svg';
-import { useIsLoading } from '@/store/useUserStore';
+import CommunityIcon from '/public/assets/groups.svg';
+import ProfileIcon from '/public/assets/login.svg';
+import { useIsLoading } from '/store/useUserStore';
 
 export default function Navbar() {
 	const { isLoading } = useIsLoading();
