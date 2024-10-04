@@ -59,7 +59,11 @@ export default function LinkNav({ link }: { link: ILinkNav }) {
 						<LineaBottom pathname='' name={name} />
 					)}
 					{options?.length && (
-						<Options options={options} isOpen={isOpen} setIsOpen={setIsOpen} />
+						<Options
+							options={[options[0].name, options[1].name]}
+							isOpen={isOpen}
+							setIsOpen={setIsOpen}
+						/>
 					)}
 				</div>
 			) : (
