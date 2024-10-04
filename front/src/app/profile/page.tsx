@@ -11,7 +11,7 @@ import ProfileDetailsEdit from '@/components/profileConfig/ProfileDetailsEdit';
 export default function ProfilePage() {
   const [userData, setUserData] = useState<IUser | null>(null);
   const [books, setBooks] = useState<IBook[]>([]);
-  const {  user: userStore } = useUserStore();
+  const { user: userStore } = useUserStore();
 
   useEffect(() => {
     const userId = userStore?.userId;
@@ -42,13 +42,7 @@ export default function ProfilePage() {
   }, [userStore]);
 
   // Manejadores para actualizar el nombre y la descripción
-  //const handleNameChange = (newName: string) => {
-  //  setUserData(prev => prev ? { ...prev, name: newName } : null);
-  //};
-
-  //const handleDescriptionChange = (newDescription: string) => {
-  //  setUserData(prev => prev ? { ...prev, description: newDescription } : null);
-  //};
+  
 
   return (
     <div className="relative container mx-auto text-center my-10 border-2 rounded-xl">
@@ -71,12 +65,8 @@ export default function ProfilePage() {
             Libros
           </Link>
           <Link href="/profile/followers" className="flex flex-col text-semiSmall border-2 border-transparent hover:shadow-md hover:transition-all p-2 rounded-md">
-            <span className="text-h5 w-full text-center">{0}</span>
+            <span className="text-h5 w-full text-center">{userData?.friends || 0}</span>
             Seguidores
-          </Link>
-          <Link href="/profile/following" className="flex flex-col text-semiSmall border-2 border-transparent hover:shadow-md hover:transition-all p-2 rounded-md">
-            <span className="text-h5 w-full text-center">{ 0}</span>
-            Seguidos
           </Link>
         </div>
 
