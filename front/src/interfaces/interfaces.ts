@@ -15,9 +15,9 @@ export interface IUser {
 	email: string;
 	isAdmin: boolean;
 	photoUrl: string;
-	description: string;
-	books: IBook[];
-	friends: Array<string>;
+	description?: string;
+	books?: IBook[];
+	friends?: Array<string>;
 	token: string;
 }
 
