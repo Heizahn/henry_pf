@@ -16,3 +16,9 @@ export interface Category {
 export interface CardProps{
     books: IBook[];
 }
+
+export interface AddBook{
+    book_id:number;
+    title: string;
+    photoUrl: string;
+}

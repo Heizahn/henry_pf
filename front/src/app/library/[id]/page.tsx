@@ -1,29 +1,55 @@
 'use client';
-import { IBook } from '@/interfaces/Ibook';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import {HOST_API} from '@/config/ENV'
+//interfaces
+import { IBook } from '@/interfaces/Ibook';
+import { IUser } from '@/interfaces/interfaces';
+import { useUserStore } from '@/store/useUserStore';
 
 export default function Page({ params }: { params: { id: string } }) {
-	const [book, setBook] = useState<IBook | null>(null);
+	const [bookId, setBookId] = useState<IBook | null>(null);
+	const [user, setUser] = useState<IUser | null>(null);
+	const { setBook, user: userData } = useUserStore()
 
+	const handleBook = async () => {
+		if (bookId) {
+			try {
+				await setBook(bookId);
+				alert('Libro guardado con éxito: ' + bookId?.title);
+				console.log('Libro guardado:', bookId);
+			} catch (error: any) { 
+				console.error('Error guardando el libro:', error.message);
+			}
+		} else {
+			console.error('No se encontró bookId');
+		}
+	};
+	
 	useEffect(() => {
+		
+		console.log(userData?.fullName);
+		
 		const fecthBookData = async () => {
 			try {
-				const responde = await fetch(`http://localhost:3000/books/${params.id}`);
+				const responde = await fetch(`${HOST_API}/books/${params.id}`);
 				const data: IBook = await responde.json();
-				setBook(data);
-				console.log(data);
+				setBookId(data);
 			} catch (error) {
 				console.error('Error fetching the book data:', error);
 			}
 		};
+		
 		fecthBookData();
 	}, [params.id]);
 
-	if (!book) {
+	if (!bookId) {
 		return <div>Book not found</div>;
 	}
+
+	//Traer tocken de usuario y sus datos
+	
 
 	return (
 		<div>
@@ -31,17 +57,17 @@ export default function Page({ params }: { params: { id: string } }) {
 				<div className='w-full h-full relative flex items-center justify-center border-r-2 px-6'>
 					<div className='h-[500px] w-[200px] object-contain'></div>
 					<Image
-						src={book.photoUrl}
-						alt={book.title}
+						src={bookId.photoUrl}
+						alt={bookId.title}
 						fill={true}
 						objectFit='contain'
 					/>
 				</div>
 				<div className='w-full h-full flex flex-col gap-4 '>
-					<h1 className='text-h2 border-b-2 px-6'>{book.title}</h1>
-					<p className='text-h3 text-black-500 px-6 mb-5'>{book.author}</p>
+					<h1 className='text-h2 border-b-2 px-6'>{bookId.title}</h1>
+					<p className='text-h3 text-black-500 px-6 mb-5'>{bookId.author}</p>
 					<div className=' px-6'>
-						{book.categories.map((category) => (
+						{bookId.categories.map((category) => (
 							<Link
 								href={`/library/categories/${category.name}`}
 								key={category.id}
@@ -52,9 +78,9 @@ export default function Page({ params }: { params: { id: string } }) {
 							</Link>
 						))}
 					</div>
-					<p className='text-p leading-relaxed px-6'>{book.description}</p>
+					<p className='text-p leading-relaxed px-6'>{bookId.description}</p>
 					<div className='flex items-center justify-center '>
-						<button className='w-full mx-6  p-2 bg-white-700  text-pBold text-white rounded-md cursor-not-allowed'>
+						<button className='w-full mx-6  p-2 bg-blue  text-pBold text-white rounded-md ' type='button' onClick={handleBook}>
 							<span>Leer</span>
 						</button>
 					</div>

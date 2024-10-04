@@ -10,9 +10,11 @@ const Page = () => {
   const handleGoHome = () => {
     router.push("/"); // Redirecciona a la página principal
   };
-
+  const handleGoLibrary= () => {
+    router.push("/library"); // Redirecciona a la página principal
+  };
   return (
-    <div className="flex h-[32rem] mx-auto my-6 mr-4 p-12">
+    <div className="flex h-[32rem]">
       {/* Sector de la imagen */}
       <div className="flex-1 flex justify-center items-center">
         <figure className="max-w-full max-h-full object-scale-down">
@@ -38,7 +40,7 @@ const Page = () => {
           Volver a inicio
         </button>
         <button
-          onClick={handleGoHome}
+          onClick={handleGoLibrary}
           className="w-3/6 m-auto bg-blue-500 text-white text-semiSmallBold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-300"
         >
           Ir a libreria

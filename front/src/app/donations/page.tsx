@@ -3,21 +3,35 @@ import BookIcon from "../../../public/assets/book.svg";
 import ToolIcon from "../../../public/assets/construction.svg"
 import World from "../../../public/assets/world1.svg"
 import Mesagge from "../../../public/assets/sms.svg"
+//
+import { useUserStore } from "@/store/useUserStore";
 
 
 const Page = () => {
 
+
+  const {user: userStore} = useUserStore();
+  const token = userStore?.token;
+  
   const handleDonation = async (amount:number) => {
+    const userData = userStore
+    console.log(userData?.userId);
+    if (!userData){
+      alert("Inicia sesión para donar");
+      return
+    }
     try {
       const response = await fetch("http://localhost:3000/donations/create-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
+          userId: userData?.userId,
           amount: amount,
           description: `Donación de $${amount} para el proyecto de libros`,
-          payerEmail: "donante@gmail.com",  // Aquí puedes obtener el email del usuario si está logueado
+          payerEmail: userData?.email, 
         }),
       });
 
@@ -26,11 +40,11 @@ const Page = () => {
       }
 
       const data = await response.json();
-      const redirect = data.response.init_point;
+      const redirect = data.mpLink;
       console.log(redirect);
       console.log("Orden creada exitosamente", data);
       if (redirect){
-        window.location.href = redirect;
+       return window.location.replace(redirect);
         
       }
       else {

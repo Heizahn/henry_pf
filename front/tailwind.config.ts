@@ -50,6 +50,7 @@ const config: Config = {
 			},
 			backgroundImage: {
 				'custom-gradient': 'linear-gradient(180deg, #00C9FF 0%, #92FE9D 100%)',
+				"custom-gradient-profile": 'linear-gradient(135deg, #F0F0F0 0%, #D1E8E2 50%, #A3D4E0 100%)',
 			},
 			// Tipografía
 			fontFamily: {

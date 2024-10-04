@@ -1,12 +1,13 @@
 import React from 'react';
-
+import { IBook } from './Ibook';
+ 
 export interface ILinkNav {
 	name: string;
-	href: string | null;
-	title: string;
-	options?: string[];
-	Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-}
+	href?: string | null; // Puede ser string o null para opciones sin enlace directo
+	options?: { name: string; href: string }[]; // Opciones de subenlaces
+	Icon: React.ElementType; // Icono como componente
+	title: string; // Título para el link
+  }
 
 export interface IUser {
 	userId: number;
@@ -14,14 +15,17 @@ export interface IUser {
 	email: string;
 	isAdmin: boolean;
 	photoUrl: string;
+	description: string;
+	books: IBook[];
+	friends: Array<any>;
 	token: string;
 }
 
 export interface IOptionsUser {
-	title: string;
-	icon?: React.FC<React.SVGProps<SVGSVGElement>>;
-	href?: string;
-	handlerClick?: () => void;
+    title: string;
+    href?: string; // Puede ser opcional
+    icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+    handlerClick?: () => void; // Puede ser opcional
 }
 
 // export interface IDecodeUser {
