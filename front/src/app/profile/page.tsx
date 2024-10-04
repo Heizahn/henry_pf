@@ -15,7 +15,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const userId = userStore?.userId;
-    
+
     const fetchUserData = async () => {
       try {
         const response = await fetch(`http://localhost:3000/users/${userId}`, {
@@ -62,8 +62,6 @@ export default function ProfilePage() {
           <ProfileDetailsEdit
             name={userData?.name || ''}
             description={userData?.description || 'Escribe algo para tu perfil...'}
-            onNameChange={handleNameChange}
-            onDescriptionChange={handleDescriptionChange}
           />
         </div>
 
