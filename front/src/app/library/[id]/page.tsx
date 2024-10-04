@@ -5,12 +5,11 @@ import { useEffect, useState } from 'react';
 import { HOST_API } from '@/config/ENV';
 // Interfaces
 import { IBook } from '@/interfaces/Ibook';
-import { IUser } from '@/interfaces/interfaces';
 import { useUserStore } from '@/store/useUserStore';
 
 export default function Page({ params }: { params: { id: string } }) {
     const [bookId, setBookId] = useState<IBook | null>(null);
-    const { user: userData, setBook } = useUserStore();
+    const { setBook } = useUserStore();
 
     const handleBook = async () => {
         if (bookId) {
