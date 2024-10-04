@@ -17,8 +17,8 @@ export default function Page({ params }: { params: { id: string } }) {
                 await setBook(bookId);
                 alert('Libro guardado con éxito: ' + bookId?.title);
                 console.log('Libro guardado:', bookId);
-            } catch (error: any) {
-                console.error('Error guardando el libro:', error.message);
+            } catch (error) {
+                if (error instanceof Error) console.error('Error guardando el libro:', error.message);
             }
         } else {
             console.error('No se encontró bookId');
