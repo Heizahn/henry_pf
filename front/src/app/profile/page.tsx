@@ -60,7 +60,7 @@ export default function ProfilePage() {
         <div className="w-1/2 text-left mr-12">
           {/* Renderizamos el componente que maneja la edición del nombre y la descripción */}
           <ProfileDetailsEdit
-            name={userData?.name || ''}
+            name={userData?.fullName || ''}
             description={userData?.description || 'Escribe algo para tu perfil...'}
           />
         </div>
