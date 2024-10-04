@@ -10,7 +10,7 @@ import { useUserStore } from '@/store/useUserStore';
 
 export default function Page({ params }: { params: { id: string } }) {
     const [bookId, setBookId] = useState<IBook | null>(null);
-    const { user: userData, setBook } = useUserStore();
+    const {  setBook } = useUserStore();
 
     const handleBook = async () => {
         if (bookId) {
