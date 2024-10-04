@@ -75,7 +75,7 @@ export default function ProfilePage() {
             Seguidores
           </Link>
           <Link href="/profile/following" className="flex flex-col text-semiSmall border-2 border-transparent hover:shadow-md hover:transition-all p-2 rounded-md">
-            <span className="text-h5 w-full text-center">{userData?.following || 0}</span>
+            <span className="text-h5 w-full text-center">{ 0}</span>
             Seguidos
           </Link>
         </div>
