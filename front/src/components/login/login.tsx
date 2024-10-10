@@ -68,17 +68,17 @@ export default function Login({
 					{/* <button className='bg-transparent text-center text-blue-500 text-sm'>
 						¿Olvidaste tu contraseña?
 					</button> */}
-					<div className='flex flex-row gap-6'>
-						<div className='text-center'>
-							<p className='text-gray-950 text-sm'>¿No tienes cuenta?</p>
+					<div className='flex flex-row gap-6 text-smallBold'>
+						<div className='text-center '>
+							<p className='text-gray-950 '>¿No tienes cuenta?</p>
 							<button
 								onClick={() => setKeyForm(1)}
-								className='bg-transparent text-center text-blue-500 text-sm'
+								className='bg-transparent text-center text-blue-500 hover:underline'
 							>
 								Regístrate
 							</button>
 						</div>
-						<Link href='/resetpassword'>
+						<Link href='/resetpassword' className='hover:underline'>
 							Olvidaste tu contraseña ?
 						</Link>
 					</div>

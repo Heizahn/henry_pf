@@ -95,12 +95,12 @@ export default function Register({
 				</Form>
 			</Formik>
 			<div>
-				<div className='w-full py-3 flex flex-col gap-4 items-center'>
+				<div className='w-full py-3 flex flex-col gap-4 items-center text-smallBold'>
 					<div className='flex flex-row gap-2'>
-						<p className='text-gray-950 text-sm'>¿Ya tienes cuenta?</p>
+						<p className='text-gray-950 '>¿Ya tienes cuenta?</p>
 						<button
 							onClick={() => setKeyForm(0)}
-							className='bg-transparent text-center text-blue-500 text-sm'
+							className='bg-transparent text-center text-blue-500 hover:underline '
 						>
 							Inicia sesión aquí
 						</button>
