@@ -13,6 +13,8 @@ const Page = () => {
 
   const {user: userStore} = useUserStore();
   const token = userStore?.token;
+  console.log(token);
+  
   
   
   const handleDonation = async (amount:number) => {
