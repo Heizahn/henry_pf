@@ -16,7 +16,6 @@ const Page = () => {
   const userId = user?.userId;
   const email = user?.email;
 
-  console.log("token:",token, "userId:", userId, "email:", email);
   
   
   
@@ -43,6 +42,7 @@ const Page = () => {
         }),
       });
 
+      console.log("token:",token, "userId:", userId, "email:", email, "amount:", amount  );
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
