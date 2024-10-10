@@ -38,7 +38,7 @@ const Page = () => {
           userId: userId,
           amount: amount,
           description: `Donación de $${amount} para el proyecto de libros`,
-          payerEmail: email, 
+          payerEmail: email 
         }),
       });
 
