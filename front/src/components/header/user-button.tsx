@@ -9,6 +9,7 @@ import PersonIcon from '/public/assets/person.svg';
 import LogoutIcon from '/public/assets/logout.svg';
 import BookIcon from '/public/assets/book.svg';
 import AmigosIcon from '/public/assets/choquemanos.svg';
+import Settings from "/public/assets/settings.svg"
 
 export default function UserButton({
 	isOpen,
@@ -18,6 +19,8 @@ export default function UserButton({
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
 	const { userLogout } = useUserStore();
+	const {user} = useUserStore();
+	const userId = user?.userId
 	const router = useRouter();
 
 	const handlerConfirm = () => {
@@ -27,7 +30,7 @@ export default function UserButton({
 	const options: IOptionsUser[] = [
 		{
 			title: 'Perfil',
-			href: '/profile',
+			href: `/profile/${userId}`,
 			icon: PersonIcon,
 		},
 		{
@@ -39,6 +42,11 @@ export default function UserButton({
 			title: 'Mis Libros',
 			href: '/profile/library',
 			icon: BookIcon,
+		},
+		{
+			title: 'Configuraciones',
+			icon: Settings,
+			href: '/profile/config',
 		},
 		{
 			title: 'Cerrar sesión',

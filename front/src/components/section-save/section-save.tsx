@@ -8,7 +8,7 @@ export default function SectionSave() {
 
 	useEffect(() => {
 		userLoginSectionSave();
-	}, []);
+	}, [userLoginSectionSave]);
 
 	return null;
 }

@@ -11,7 +11,7 @@ export interface ILinkNav {
 
 export interface IUser {
 	userId: number;
-	fullName: string;
+	name: string;
 	email: string;
 	isAdmin: boolean;
 	photoUrl: string;

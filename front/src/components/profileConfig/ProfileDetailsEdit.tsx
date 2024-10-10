@@ -13,8 +13,7 @@ export default function ProfileDetailsEdit({
 }: ProfileDetailsEditProps) {
   const userStore = useUserStore();
   const userId = userStore.user?.userId;
-  const token = userStore.user?.token; // Aquí se obtiene el token desde el store
-  console.log(userId, token);
+  const token = userStore.user?.token;
   
 
   return (

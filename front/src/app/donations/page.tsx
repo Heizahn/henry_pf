@@ -5,6 +5,7 @@ import World from "../../../public/assets/world1.svg"
 import Mesagge from "../../../public/assets/sms.svg"
 //
 import { useUserStore } from "@/store/useUserStore";
+import { HOST_API } from "@/config/ENV";
 
 
 const Page = () => {
@@ -13,20 +14,24 @@ const Page = () => {
   const {user: userStore} = useUserStore();
   const token = userStore?.token;
   
+  
   const handleDonation = async (amount:number) => {
     const userData = userStore
     console.log(userData?.userId);
+    console.log(userData?.token);
+    
     if (!userData){
       alert("Inicia sesión para donar");
       return
     }
     try {
-      const response = await fetch("http://localhost:3000/donations/create-order", {
+      const response = await fetch(`${HOST_API}/donations/create-order`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`
-        },
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
         body: JSON.stringify({
           userId: userData?.userId,
           amount: amount,

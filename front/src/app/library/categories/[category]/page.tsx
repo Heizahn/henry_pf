@@ -3,23 +3,38 @@ import { useEffect, useState } from "react"
 import Link from "next/link";
 //interfaces
 import { IBook } from "@/interfaces/Ibook";
+import { useUserStore } from "@/store/useUserStore";
+import { HOST_API } from "@/config/ENV";
 
 export default function Page ({params}:{params: {category: string}}) {
     const [books, setBooks] = useState<IBook[]>([]);
+    const {user} = useUserStore();
+    const token = user?.token;
+    console.log(token);
     useEffect(()=>{
+        
         const fecthBookData = async () =>  {
-            try{
-                const response = await fetch(`http://localhost:3000/books`);
-                if (!response.ok) throw new Error('Error fetching books');
-                const data: IBook[] = await response.json();
-                setBooks(data);
-            }
-            catch(error){
-                console.log(error);
+            if(token){
+                try{
+                    const response = await fetch(`${HOST_API}/books/list`,{
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                            Authorization: `Bearer ${token}`,
+    
+                        }
+                    });
+                    if (!response.ok) throw new Error('Error fetching books');
+                    const data: IBook[] = await response.json();
+                    setBooks(data);
+                }
+                catch(error){
+                    console.log(error);
+                }
             }
         }
         fecthBookData();
-    },[])
+    },[token])
 
     const booksByCategory = books.filter((book) => book.categories.some((category) => category.name.trim() === decodeURIComponent(params.category.trim())));
         return(

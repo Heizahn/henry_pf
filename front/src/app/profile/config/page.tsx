@@ -1,94 +1,75 @@
-"use client"
+"use client";
 import { useState } from 'react';
-import Image from 'next/image';
 import SettingsIcon from "/public/assets/settings.svg";
+import { useUserStore } from '@/store/useUserStore';
 
 export default function ProfileConfig() {
+	const { user: userStore } = useUserStore();
+	const email = userStore?.email || '';
+	
 	const [user, setUser] = useState({
-		name: 'Juan Pérez',
-		profileImage: '/path-to-profile-image.jpg',
-		description: 'Soy un apasionado de la lectura...',
+		email: email,
+		password: '', // Mantenemos en blanco para evitar mostrar la contraseña real
 	});
 
-	const [newName, setNewName] = useState(user.name);
-	const [newDescription, setNewDescription] = useState(user.description);
-	const [newProfileImage, setNewProfileImage] = useState(user.profileImage);
-
-	const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e.target.files && e.target.files[0]) {
-			const reader = new FileReader();
-			reader.onload = () => setNewProfileImage(reader.result as string);
-			reader.readAsDataURL(e.target.files[0]);
-		}
-	};
-
-	const handleRemoveImage = () => {
-		setNewProfileImage(user.profileImage); // Restablecer a la imagen original del perfil
-	};
+	const [newEmail, setNewEmail] = useState(user.email);
+	const [newPassword, setNewPassword] = useState('');
+	const [confirmPassword, setConfirmPassword] = useState('');
 
 	const handleSave = () => {
-		// Lógica para guardar el perfil actualizado, puede ser una llamada a la API
+		// Validar que las contraseñas coincidan antes de guardar
+		if (newPassword !== confirmPassword) {
+			alert('Las contraseñas no coinciden');
+			return;
+		}
+		// Lógica para guardar el email y la nueva contraseña
 		setUser({
-			name: newName,
-			description: newDescription,
-			profileImage: newProfileImage,
+			...user,
+			email: newEmail,
+			password: newPassword,
 		});
 		alert('Perfil actualizado correctamente');
 	};
 
 	return (
 		<div className="container mx-auto m-10 text-center p-8 border-2 rounded-xl">
-            <SettingsIcon className="absolute right-20  w-32 h-32" />
-			<h2 className="text-h2 mb-6">Configuración del Perfil
-            </h2>
+			<SettingsIcon className="absolute right-20  w-20 h-32" />
+			<h2 className="text-h2 mb-6">Configuración del Perfil</h2>
 
 			{/* Formulario de edición */}
 			<div className="flex flex-col items-center gap-6">
-				{/* Subir nueva foto de perfil */}
-				<div className="flex flex-col items-center">
-					<Image
-						src={newProfileImage}
-						alt="Foto de perfil"
-						width={128}
-						height={128}
-						className="rounded-full shadow-md"
-					/>
-					<input
-						type="file"
-						accept="image/*"
-						onChange={handleImageUpload}
-						className="mt-4"
-					/>
-					{/* Botón para eliminar la imagen seleccionada */}
-					{newProfileImage !== user.profileImage && (
-						<button
-							onClick={handleRemoveImage}
-							className="bg-red-500 text-white p-2 rounded-md mt-4 hover:bg-red-600 transition-colors"
-						>
-							Eliminar Imagen
-						</button>
-					)}
-				</div>
-
-				{/* Campo de nombre */}
+				{/* Campo de email */}
 				<div className="w-full flex flex-col">
-					<label htmlFor="name" className="text-pBold mb-2 text-left ">Nombre</label>
+					<label htmlFor="email" className="text-pBold mb-2 text-left">Correo Electrónico</label>
 					<input
-						type="text"
-						id="name"
-						value={newName}
-						onChange={(e) => setNewName(e.target.value)}
+						type="email"
+						id="email"
+						value={newEmail}
+						onChange={(e) => setNewEmail(e.target.value)}
 						className="border border-black p-2 rounded-md focus:ring focus:ring-black"
 					/>
 				</div>
 
-				{/* Campo de descripción */}
+				{/* Campo de nueva contraseña */}
 				<div className="w-full flex flex-col">
-					<label htmlFor="description" className="text-pBold mb-2 text-left">Descripción</label>
-					<textarea
-						id="description"
-						value={newDescription}
-						onChange={(e) => setNewDescription(e.target.value)}
+					<label htmlFor="new-password" className="text-pBold mb-2 text-left">Nueva Contraseña</label>
+					<input
+						type="password"
+						id="new-password"
+						value={newPassword}
+						onChange={(e) => setNewPassword(e.target.value)}
+						className="border border-black p-2 rounded-md"
+					/>
+				</div>
+
+				{/* Confirmación de contraseña */}
+				<div className="w-full flex flex-col">
+					<label htmlFor="confirm-password" className="text-pBold mb-2 text-left">Confirmar Contraseña</label>
+					<input
+						type="password"
+						id="confirm-password"
+						value={confirmPassword}
+						onChange={(e) => setConfirmPassword(e.target.value)}
 						className="border border-black p-2 rounded-md"
 					/>
 				</div>

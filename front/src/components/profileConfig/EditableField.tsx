@@ -1,5 +1,9 @@
+'use client'
+//users/id PUT
 import { useState, useEffect } from 'react';
 import Edit from '../../../public/assets/edit.svg'; // Ícono de edición
+import { CldUploadWidget } from 'next-cloudinary';
+import Image from 'next/image'
 
 interface EditableFieldProps {
     value: string;
@@ -21,6 +25,7 @@ export default function EditableField({
     const [isEditing, setIsEditing] = useState(false);
     const [inputValue, setInputValue] = useState(value);
     const [isSaving, setIsSaving] = useState(false); // Estado para mostrar feedback de guardado
+    const [saveImg, setSaveImg] = useState('')
 
     useEffect(() => {
         setInputValue(value);
@@ -84,7 +89,41 @@ export default function EditableField({
 
     return (
         <div className='relative group my-4'>
-            {isEditing ? (
+            {isEditing ? (<>
+                <div className='text-h5 p-2 m-2'>
+                    <CldUploadWidget uploadPreset='portdas' onSuccess={({info}) => {
+                        if (info){
+
+                            if (typeof info  !== 'string' && info.secure_url !== undefined)
+                            setSaveImg(info.secure_url)
+                        }
+                    }}>
+                        {({open})=> {return (<div className='flex items-center w-full justify-center'>
+                            <div className='relative w-52 h-72 object-cover bg-white rounded-md'>
+													<Image
+														src={saveImg}
+														alt='Portada del libro'
+														fill={true}
+														priority={true}
+														sizes='100'
+														style={{
+															objectFit: 'fill',
+															objectPosition: 'center',
+															borderRadius: '0.375rem',
+														}}
+													/>
+												</div>
+														<button
+															className=' bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-md flex items-center justify-center gap-2'
+															type='button'
+															onClick={() => open()}
+														>
+															Cambiar Portada
+														</button>
+													</div>
+											)}}
+                    </CldUploadWidget>
+                    </div>
                 <div className='flex flex-col w-full'>
                     {isTextArea ? (
                         <>
@@ -109,21 +148,22 @@ export default function EditableField({
                     )}
                     <button
                         onClick={handleSave}
-                        disabled={isSaving} // Desactivar el botón mientras guarda
+                        disabled={isSaving}
                         className='text-p mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300 disabled:opacity-50'
                     >
                         {isSaving ? 'Guardando...' : 'Guardar'}
                     </button>
                 </div>
+                </>
             ) : (
                 <div className='flex items-center w-full'>
                     <span className='break-words w-full'>{inputValue}</span>
                     <Edit
                         onClick={handleEditClick}
-                        className='hover:bg-white-500 rounded-full ml-4 w-6 h-6 text-gray-400 cursor-pointer'
+                        className='hidden group-hover:block hover:bg-white-500 rounded-full ml-4 w-6 h-6 text-gray-400 cursor-pointer'
                     />
                 </div>
             )}
         </div>
     );
-}
+}    

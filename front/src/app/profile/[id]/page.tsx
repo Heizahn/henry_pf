@@ -1,32 +1,73 @@
 "use client";
 import Image from 'next/image';
 import Link from 'next/link';
-import { useUserStore } from '@/store/useUserStore';
 import { useEffect, useState } from 'react';
 import { IBook } from '@/interfaces/Ibook';
-import SettingsIcon from "/public/assets/settings.svg";
 import { IUser } from '@/interfaces/interfaces';
+import { useUserStore } from '@/store/useUserStore';
+import { HOST_API } from '@/config/ENV';
 import ProfileDetailsEdit from '@/components/profileConfig/ProfileDetailsEdit';
 
-export default function ProfilePage() {
+export default function ProfilePage({params}: {params: {id: string}}) {
   const [userData, setUserData] = useState<IUser | null>(null);
   const [books, setBooks] = useState<IBook[]>([]);
-  const { user: userStore } = useUserStore();
 
+  const {user} = useUserStore();
+  const token = user?.token;
+
+  // Fetch user data
   useEffect(() => {
-    const userId = userStore?.userId;
+    if (params.id && token) { 
+      const fetchUserData = async () => {
+        try {
+          const response = await fetch(`${HOST_API}/users/${params.id}`, {
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
-    const fetchUserData = async () => {
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+          }
+
+          const user = await response.json();
+          setUserData(user);
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error(error.message);
+          }
+        }
+      };
+
+      fetchUserData();
+    }
+  }, [params.id, token]);
+
+  // Fetch books
+  useEffect(() => {
+    const fetchBooks = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/users/${userId}`, {
-          method: "GET",
+        const response = await fetch(`${HOST_API}/users/${params.id}/books`, {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${userStore?.token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
-        const user = await response.json();
-        setUserData(user);
+    
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+    
+        const booksData = await response.json();
+        
+        // Verifica si booksData es un array o un objeto único
+        if (Array.isArray(booksData)) {
+          setBooks(booksData); // Si es array, actualiza normalmente
+        } else {
+          setBooks([booksData]); // Si no es un array, lo convierte en array
+        }
       } catch (error) {
         if (error instanceof Error) {
           console.error(error.message);
@@ -34,45 +75,37 @@ export default function ProfilePage() {
       }
     };
 
-    fetchUserData();
-
-    if (userStore?.books && userStore.books.length > 0) {
-      setBooks(userStore.books);
+    if (params.id && token) {
+      fetchBooks();
     }
-  }, [userStore]);
-
-  // Manejadores para actualizar el nombre y la descripción
-  
+  }, [params.id, token]);
 
   return (
     <div className="relative container mx-auto text-center my-10 border-2 rounded-xl">
       <div className="flex items-center justify-between py-16 px-12 border-b-2 bg-white-300">
         <div className="w-32 h-32 relative rounded-full overflow-hidden shadow-md bg-white">
-          <Image src={userData?.photoUrl || '/default-profile.jpg'} alt="Profile Image" layout="fill" objectFit="cover" />
+          {userData?.photoUrl && (
+            <Image src={userData.photoUrl || 'https://th.bing.com/th/id/OIP.2KWvyGN-HqjoxRX_UoY0zQHaHa?rs=1&pid=ImgDetMain'} alt="Profile Image" layout="fill" objectFit="cover" />
+          )}
         </div>
 
         <div className="w-1/2 text-left mr-12">
-          {/* Renderizamos el componente que maneja la edición del nombre y la descripción */}
           <ProfileDetailsEdit
-            name={userData?.fullName || ''}
+            name={userData?.name || 'Nombre no disponible'}
             description={userData?.description || 'Escribe algo para tu perfil...'}
           />
         </div>
 
         <div className="flex rounded-md gap-4">
-          <Link href="/profile/books" className="flex flex-col text-semiSmall border-2 border-transparent hover:shadow-md hover:transition-all p-2 rounded-md">
+          <Link href={`/profile/${params.id}/books`} className="flex flex-col text-semiSmall border-2 border-transparent hover:shadow-md hover:transition-all p-2 rounded-md">
             <span className="text-h5 w-full text-center">{books.length}</span>
             Libros
           </Link>
-          <Link href="/profile/followers" className="flex flex-col text-semiSmall border-2 border-transparent hover:shadow-md hover:transition-all p-2 rounded-md">
+          <Link href={`/profile/${params.id}/followers`} className="flex flex-col text-semiSmall border-2 border-transparent hover:shadow-md hover:transition-all p-2 rounded-md">
             <span className="text-h5 w-full text-center">{userData?.friends || 0}</span>
-            Seguidores
+            Amigos
           </Link>
         </div>
-
-        <Link href="/profile/config" className="absolute text-center right-4 top-3 text-pBold hover:shadow-inner-black transition-shadow duration-400 p-1.5 rounded-full">
-          <SettingsIcon />
-        </Link>
       </div>
 
       <div className="m-12 mb-16">

@@ -7,6 +7,7 @@ import SearchBooks from '@/components/SearchBar';
 import { IBook } from '@/interfaces/Ibook';
 import { useEffect, useState } from 'react';
 import { HOST_API } from '@/config/ENV';
+import { useUserStore } from '@/store/useUserStore';
 
 //Assets
 // import bgImg from "/public/assets/BGimg.png";
@@ -15,17 +16,27 @@ export default function Page() {
 	const [books, setBooks] = useState<IBook[]>([]);
 	const [booksFiltered, setBooksFiltered] = useState<IBook[]>([]);
 	const fetchBooks = async () => {
+		const token = useUserStore.getState().user?.token
+		console.log(token);
+		
+		
 		try {
-			const response = await fetch(`${HOST_API}/books`);
+			const response = await fetch(`${HOST_API}/books/list`,{
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Bearer ${token}`,
+				}
+			});
 			if (!response.ok) throw new Error('Error fetching books');
 			const data: IBook[] = await response.json();
 
 			console.log(data);
 			setBooks(data);
-			// console.log(data);
 		} catch (error) {
 			if (error instanceof Error) console.error(error.message);
 		}
+		
 	};
 
 	useEffect(() => {
@@ -36,7 +47,6 @@ export default function Page() {
 		<Screen>
 			<div className='width-full '>
 				<div className='flex w-full items-center justify-center'>
-					{/* <Image className='absolute z-[-1]' src={bgImg} alt='background'/> */}
 
 					<div className='flex w-3/5 flex-col items-center justify-center gap-12 mb-12 mt-8'>
 						<h1 className='w-11/12 text-h2 font-bold text-center'>

@@ -4,6 +4,7 @@ import { loginSchema } from './loginSchema';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useUserStore } from '@/store/useUserStore';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Login({
 	setKeyForm,
@@ -75,6 +76,9 @@ export default function Login({
 						>
 							Regístrate
 						</button>
+						<Link href='/resetpassword'>
+							Olvidaste tu contraseña ?
+						</Link>
 					</div>
 				</div>
 			</div>

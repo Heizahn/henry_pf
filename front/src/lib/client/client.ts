@@ -5,8 +5,8 @@ export function DecodedToken(token: string) {
 	const decodedToken = jwt.decode(token) as jwt.JwtPayload;
 
 	const user: IUser = {
-		userId: decodedToken?.id,
-		fullName: decodedToken?.name,
+		userId: decodedToken?.user_id,
+		name: decodedToken?.name,
 		email: decodedToken?.email,
 		photoUrl: decodedToken?.photoUrl,
 		isAdmin: decodedToken?.isAdmin,
@@ -21,7 +21,7 @@ export function LoginGoogle(token: string) {
 
 	const user: IUser = {
 		userId: decodedToken?.id,
-		fullName: decodedToken?.name,
+		name: decodedToken?.name,
 		email: decodedToken?.email,
 		photoUrl: decodedToken?.photoUrl,
 		isAdmin: decodedToken?.isAdmin,
