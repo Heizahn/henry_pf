@@ -21,6 +21,10 @@ export default function Page({ params }: { params: { id: string } }) {
             setLoadingReviews(true);
             
         };
+        const handleClick = () => {
+          handleSaveBook();
+          handlePdfDownload(); 
+        };
 
   useEffect(() => {
     if (token) {
@@ -71,7 +75,7 @@ export default function Page({ params }: { params: { id: string } }) {
       fetchBookData();
       fetchReviews();
     }
-  }, [params.id, token]);
+  }, [params.id, token, handleClick]);
 
   const handleSaveBook = async () => {
     if (!book || !userId) return;
@@ -128,10 +132,7 @@ export default function Page({ params }: { params: { id: string } }) {
     }
   };
   
-  const handleClick = () => {
-    handleSaveBook();
-    handlePdfDownload(); // Aquí llamas a la otra función
-  };
+  
   
 
   if (!book) {
