@@ -11,10 +11,10 @@ import { HOST_API } from "@/config/ENV";
 const Page = () => {
 
 
-  const {user: userStore} = useUserStore();
-  const token = userStore?.token;
-  const userId = userStore?.userId;
-  const email = userStore?.email;
+  const {user} = useUserStore();
+  const token = user?.token 
+  const userId = user?.userId;
+  const email = user?.email;
   console.log(token);
   
   
