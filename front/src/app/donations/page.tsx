@@ -35,7 +35,7 @@ const Page = () => {
 					Authorization: `Bearer ${token}`,
 				},
         body: JSON.stringify({
-          userId: userId,
+          user_id: userId,
           amount: amount,
           description: `Donación de $${amount} para el proyecto de libros`,
           payerEmail: email 
