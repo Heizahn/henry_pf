@@ -14,9 +14,7 @@ export async function UserLogin(email: string, password: string) {
 	if (!response.ok) throw new Error('Usuario no encontrado');
 
 	const { token } = await response.json();
-	// const token =
-	// 	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ1c3VhcmlvZWplbXBsb0BleGFtcGxlLmNvbSIsImlzQWRtaW4iOiJmYWxzZSIsIm5hbWUiOiJKdWFyIFBlcmV6IiwicGhvdG9VcmwiOiJodHRwczovL2V4YW1wbGUuY29tIiwiaWF0IjoxNzI2ODU0MTEwfQ.00t_Km1FX4KMVQyD3gH55uSgBKo-709lA5oAREOqxAc';
-
+	
 	const user: IUser = DecodedToken(token);
 
 	return user;

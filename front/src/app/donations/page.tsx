@@ -13,16 +13,15 @@ const Page = () => {
 
   const {user: userStore} = useUserStore();
   const token = userStore?.token;
+  const userId = userStore?.userId;
+  const email = userStore?.email;
   console.log(token);
   
   
   
   const handleDonation = async (amount:number) => {
-    const userData = userStore
-    console.log(userData?.userId);
-    console.log(userData?.token);
     
-    if (!userData){
+    if (!userId){
       alert("Inicia sesión para donar");
       return
     }
@@ -35,10 +34,10 @@ const Page = () => {
 					Authorization: `Bearer ${token}`,
 				},
         body: JSON.stringify({
-          userId: userData?.userId,
+          userId: userId,
           amount: amount,
           description: `Donación de $${amount} para el proyecto de libros`,
-          payerEmail: userData?.email, 
+          payerEmail: email, 
         }),
       });
 
