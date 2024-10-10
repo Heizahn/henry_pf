@@ -23,7 +23,6 @@ export default function RecoveryPassword() {
       }
 
       alert('Instrucciones enviadas a tu correo electrónico.');
-      router.push('/login'); // Redirigir al login tras el envío exitoso
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
