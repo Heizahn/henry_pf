@@ -1,10 +1,8 @@
 'use client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useRouter } from 'next/navigation';
 import { HOST_API } from '@/config/ENV';
 
 export default function RecoveryPassword() {
-  const router = useRouter();
 
   // Función para manejar el envío de la solicitud de recuperación de contraseña
   const submitRecovery = async (values: { email: string }) => {
