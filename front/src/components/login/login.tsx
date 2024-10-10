@@ -68,14 +68,16 @@ export default function Login({
 					{/* <button className='bg-transparent text-center text-blue-500 text-sm'>
 						¿Olvidaste tu contraseña?
 					</button> */}
-					<div className='flex flex-row gap-2'>
-						<p className='text-gray-950 text-sm'>¿No tienes cuenta?</p>
-						<button
-							onClick={() => setKeyForm(1)}
-							className='bg-transparent text-center text-blue-500 text-sm'
-						>
-							Regístrate
-						</button>
+					<div className='flex flex-row gap-6'>
+						<div className='text-center'>
+							<p className='text-gray-950 text-sm'>¿No tienes cuenta?</p>
+							<button
+								onClick={() => setKeyForm(1)}
+								className='bg-transparent text-center text-blue-500 text-sm'
+							>
+								Regístrate
+							</button>
+						</div>
 						<Link href='/resetpassword'>
 							Olvidaste tu contraseña ?
 						</Link>
