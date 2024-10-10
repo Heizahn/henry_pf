@@ -1,6 +1,7 @@
 'use client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useRouter } from 'next/navigation';
+import { HOST_API } from '@/config/ENV';
 
 export default function RecoveryPassword() {
   const router = useRouter();
@@ -9,7 +10,7 @@ export default function RecoveryPassword() {
   const submitRecovery = async (values: { email: string }) => {
     try {
       // Enviar el email al backend con fetch
-      const response = await fetch('http://localhost:3000/auth/forgot-password', {
+      const response = await fetch(`${HOST_API}/auth/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
