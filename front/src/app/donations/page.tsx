@@ -15,7 +15,7 @@ const Page = () => {
   const token = user?.token 
   const userId = user?.userId;
   const email = user?.email;
-  console.log(token);
+  console.log(token, userId, email);
   
   
   
