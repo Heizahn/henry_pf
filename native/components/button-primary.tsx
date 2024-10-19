@@ -18,14 +18,14 @@ export default function ButtonPrimary({ handlerPress, title }: ButtonPrimaryProp
 
 const styles = StyleSheet.create({
 	btn: {
-		backgroundColor: '#202020',
+		backgroundColor: '#007AD9',
 		paddingHorizontal: 20,
 		paddingVertical: 10,
 		borderRadius: 10,
 		marginTop: 10,
 	},
 	btnPressed: {
-		backgroundColor: '#303030',
+		backgroundColor: '#003D7A',
 		paddingHorizontal: 20,
 		paddingVertical: 10,
 		borderRadius: 10,
