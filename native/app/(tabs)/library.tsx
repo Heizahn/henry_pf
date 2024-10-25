@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import GetBooks from '../../components/books/getBooks';
 
-export default function Setting() {
+export default function Library() {
 	return (
 		<View style={styles.container}>
-			<Text>Setting</Text>
+			<Text>library</Text>
+			<GetBooks />
 		</View>
 	);
 }
@@ -13,7 +15,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
-		alignItems: 'center',
 		justifyContent: 'center',
+		paddingHorizontal: 20,
+		paddingTop: 20,
 	},
 });

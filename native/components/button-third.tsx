@@ -1,11 +1,10 @@
 import { StyleSheet, Text, Pressable } from 'react-native';
-import React from 'react';
 import { ButtonProps } from '../lib/interfaces/interfaces';
 
-export default function ButtonPrimary({ handlerPress, title }: ButtonProps) {
+export default function ButtonThird({ handlerPress, title }: ButtonProps) {
 	return (
 		<Pressable
-			style={({ pressed }) => (!pressed ? styles.btn : { ...styles.btnPressed })}
+			style={({ pressed }) => (!pressed ? styles.btn : styles.btnPressed)}
 			onPress={handlerPress}
 		>
 			<Text style={styles.title}>{title}</Text>
@@ -15,21 +14,23 @@ export default function ButtonPrimary({ handlerPress, title }: ButtonProps) {
 
 const styles = StyleSheet.create({
 	btn: {
-		backgroundColor: '#007AD9',
+		// backgroundColor transparent,
+		backgroundColor: 'rgba(0, 0, 0, 0)',
 		paddingHorizontal: 20,
 		paddingVertical: 10,
 		borderRadius: 10,
 		marginTop: 10,
 	},
 	btnPressed: {
-		backgroundColor: '#003D7A',
+		backgroundColor: 'rgba(0, 0, 0, 0.2)',
 		paddingHorizontal: 20,
 		paddingVertical: 10,
 		borderRadius: 10,
 		marginTop: 10,
 	},
+
 	title: {
-		color: 'white',
+		color: '#202020',
 		textAlign: 'center',
 		fontSize: 16,
 		fontWeight: 'semibold',

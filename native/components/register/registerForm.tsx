@@ -1,42 +1,44 @@
+import { styles } from './styles';
 import { Formik } from 'formik';
-import { Alert, AppState, StyleSheet, Text, TextInput, View } from 'react-native';
-import ButtonPrimary from './button-primary';
+import { Alert, Text, TextInput, View } from 'react-native';
+import ButtonPrimary from '../button-primary';
 import * as yup from 'yup';
-import { supabase } from '../lib/supabase/supabase';
 import { useState } from 'react';
-import { signInWithEmail } from '../lib/client/auth';
-import { router } from 'expo-router';
+import { signUpWithEmail } from '../../lib/client/auth';
 
-const loginSchema = yup.object({
+const registerSchema = yup.object({
 	email: yup.string().email('Correo inválido').required('*'),
 	password: yup.string().min(8, 'Contraseña debe tener 8 caracteres').required('*'),
+	confirmPassword: yup
+		.string()
+		.oneOf([yup.ref('password')], 'Las contraseñas no coinciden')
+		.required('*'),
 });
 
-export default function LoginForm() {
+export default function RegisterForm() {
 	const [isLoading, setIsLoading] = useState(false);
 	const handlerSubmit = async ({ email, password }: { email: string; password: string }) => {
 		try {
 			setIsLoading(true);
-			await signInWithEmail({ email, password });
+			await signUpWithEmail({ email, password });
 		} catch (error) {
 			if (error instanceof Error) Alert.alert(error.message);
 		} finally {
-			router.replace('/home');
 			setIsLoading(false);
 		}
 	};
 	return (
 		<Formik
-			initialValues={{ email: '', password: '' }}
-			validationSchema={loginSchema}
+			initialValues={{ email: '', password: '', confirmPassword: '' }}
+			validationSchema={registerSchema}
 			onSubmit={(values) => {
-				handlerSubmit(values);
+				handlerSubmit({ email: values.email, password: values.password });
 			}}
 		>
 			{({ handleChange, handleBlur, handleSubmit, values, errors }) => (
 				<View style={styles.container}>
 					<View>
-						<Text style={styles.title}>Iniciar Sesión</Text>
+						<Text style={styles.title}>Registro</Text>
 					</View>
 
 					<View style={styles.inputsDiv}>
@@ -72,8 +74,26 @@ export default function LoginForm() {
 							secureTextEntry={true}
 						/>
 					</View>
+
+					<View style={styles.inputsDiv}>
+						<Text style={styles.label}>
+							Confirmar contraseña{' '}
+							{errors.confirmPassword && (
+								<Text style={{ color: 'red' }}>{errors.confirmPassword}</Text>
+							)}
+						</Text>
+
+						<TextInput
+							style={styles.input}
+							onChangeText={handleChange('confirmPassword')}
+							onBlur={handleBlur('confirmPassword')}
+							value={values.confirmPassword}
+							secureTextEntry={true}
+						/>
+					</View>
+
 					<View style={styles.buttonDiv}>
-						<ButtonPrimary handlerPress={handleSubmit} title='Iniciar Sesión' />
+						<ButtonPrimary handlerPress={handleSubmit} title='Registrase' />
 					</View>
 					{isLoading && <Text>Cargando...</Text>}
 				</View>
@@ -81,46 +101,3 @@ export default function LoginForm() {
 		</Formik>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		display: 'flex',
-		flexDirection: 'column',
-		padding: 20,
-		backgroundColor: 'white',
-		justifyContent: 'center',
-	},
-
-	title: {
-		textAlign: 'center',
-		fontSize: 24,
-		fontWeight: 'bold',
-		marginBottom: 16,
-	},
-
-	inputsDiv: {
-		display: 'flex',
-		flexDirection: 'column',
-		marginTop: 10,
-		backgroundColor: 'white',
-		alignItems: 'flex-start',
-	},
-
-	input: {
-		width: '100%',
-		height: 40,
-		borderColor: 'black',
-		borderWidth: 1,
-		borderRadius: 10,
-		padding: 10,
-	},
-	label: {
-		fontSize: 16,
-		textAlign: 'left',
-		marginBottom: 6,
-	},
-
-	buttonDiv: {
-		marginTop: 20,
-	},
-});

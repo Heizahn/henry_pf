@@ -1,12 +1,36 @@
 import { Link, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { AppState, StyleSheet, Text, View } from 'react-native';
 import ButtonPrimary from '../components/button-primary';
+import { supabase } from '../lib/supabase/supabase';
+import { Session } from '@supabase/supabase-js';
+import { useEffect, useState } from 'react';
+
+AppState.addEventListener('change', (state) => {
+	if (state === 'active') {
+		supabase.auth.startAutoRefresh();
+	} else {
+		supabase.auth.stopAutoRefresh();
+	}
+});
 
 export default function App() {
-	const handlerPress = () => {
-		router.push('/sign-in');
-	};
+	const [session, setSession] = useState<Session | null>(null);
+
+	useEffect(() => {
+		if (!session) {
+			supabase.auth.getSession().then(({ data: { session } }) => {
+				setSession(session);
+			});
+
+			supabase.auth.onAuthStateChange((_event, session) => {
+				setSession(session);
+			});
+		} else {
+			router.replace('/library');
+		}
+	}, [session]);
+
 	return (
 		<View style={styles.container}>
 			<StatusBar style='auto' />
@@ -27,7 +51,10 @@ export default function App() {
 					red de una comunidad que transforma la lectura en una experiencia única.
 				</Text>
 				<View style={styles.buttonPos}>
-					<ButtonPrimary handlerPress={handlerPress} title='Comienza aquí' />
+					<ButtonPrimary
+						handlerPress={() => router.push('/(auth)/sign-in')}
+						title='Comienza aquí'
+					/>
 				</View>
 			</View>
 
