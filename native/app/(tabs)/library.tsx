@@ -5,7 +5,6 @@ import GetBooks from '../../components/books/getBooks';
 export default function Library() {
 	return (
 		<View style={styles.container}>
-			<Text>library</Text>
 			<GetBooks />
 		</View>
 	);
@@ -16,7 +15,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#fff',
 		justifyContent: 'center',
-		paddingHorizontal: 20,
 		paddingTop: 20,
 	},
 });

@@ -18,10 +18,10 @@ export default function LoginForm() {
 		try {
 			setIsLoading(true);
 			await signInWithEmail({ email, password });
+			router.replace('/library');
 		} catch (error) {
 			if (error instanceof Error) Alert.alert(error.message);
 		} finally {
-			router.replace('/home');
 			setIsLoading(false);
 		}
 	};
